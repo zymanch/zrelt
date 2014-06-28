@@ -14,6 +14,7 @@ return array(
     'language' => 'ru',
 	// autoloading model and component classes
 	'import'=>array(
+		'application.models.base.*',
 		'application.models.*',
 		'application.forms.*',
 		'application.components.*',
@@ -40,10 +41,6 @@ return array(
         'bootstrap'=>array(
             'class'=>'bootstrap.components.Bootstrap',
         ),
-        'themeManager'=>array(
-            'class'=>'CThemeManager',
-        ),
-		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
 			'urlFormat'=>'path',
             'showScriptName'=>false,
@@ -55,7 +52,7 @@ return array(
 			),
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=zphotos',
+			'connectionString' => 'mysql:host=localhost;dbname=zrelt',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
@@ -88,7 +85,5 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
         'salt' => 'salt',
-        'price' => 2.00,
-        'min_count' => 50
 	),
 );

@@ -27,8 +27,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$model = new UploadForm();
-		$this->render('index',array('model' => $model));
+
 	}
 
 	/**
