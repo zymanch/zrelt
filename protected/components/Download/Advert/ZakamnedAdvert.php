@@ -76,24 +76,27 @@ class ZakamnedAdvert extends DownloadAdvert {
             'space_cookroom' => isset($this->_space[2]) && intval($this->_space[2],10)? intval($this->_space[2],10) : null,
             'seller_id' => $this->_getSellerId(),
             'address_id' => $this->_getAddressId(),
+            'source_id' => 3,
         );
         $additionalAttributes = array(
             'floor_max' => $this->_floor[1],
             'balcony' => is_null($this->_balcony) ? null : $this->_balcony,
             'phone' => is_null($this->_phoneExist) ? null : ($this->_phoneExist ? 'yes' : 'no'),
             'steel_door' => is_null($this->_steelDoor) ? null : ($this->_steelDoor ? 'yes' : 'no'),
+            'url' => $this->_url,
+            'created' => date('Y-m-d H:i:s')
+        );
+        $newAttributes = array(
             'information' => $this->_info,
             'price' => $this->_price,
-            'url' => $this->_url,
-            'source_id' => 3,
-            'created' => date('Y-m-d H:i:s')
         );
         $advert = Advert::model()->findByAttributes($mainAttributes);
         if (!$advert) {
             $advert = new Advert();
             $advert->setAttributes($mainAttributes);
+            $advert->setAttributes($additionalAttributes);
         }
-        $advert->setAttributes($additionalAttributes);
+        $advert->setAttributes($newAttributes);
         if (!$advert->save()) {
             print ($advert->getErrorsAsText())."\n";
         }
