@@ -2055,3 +2055,31 @@ Stack trace:
 REQUEST_URI=/gii/model/index
 HTTP_REFERER=http://zrelt.com/gii/default/index
 ---
+2014/06/29 08:08:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in Z:\home\zrelt.com\framework\web\CWebApplication.php:286
+Stack trace:
+#0 Z:\home\zrelt.com\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 Z:\home\zrelt.com\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 Z:\home\zrelt.com\public\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/06/29 08:35:56 [error] [php] include(ZreltPagination.php): failed to open stream: No such file or directory (E:\Denwer\home\zrelt.com\framework\YiiBase.php:427)
+Stack trace:
+#0 E:\Denwer\home\zrelt.com\protected\commands\DownloadCommand.php(27): spl_autoload_call()
+#1 E:\Denwer\home\zrelt.com\protected\commands\DownloadCommand.php(20): DownloadCommand->_download()
+#2 E:\Denwer\home\zrelt.com\framework\console\CConsoleCommandRunner.php(71): DownloadCommand->run()
+#3 E:\Denwer\home\zrelt.com\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run()
+#4 E:\Denwer\home\zrelt.com\framework\base\CApplication.php(180): CConsoleApplication->processRequest()
+#5 E:\Denwer\home\zrelt.com\framework\yiic.php(33): CConsoleApplication->run()
+#6 E:\Denwer\home\zrelt.com\protected\yiic.php(11): require_once()
+#7 E:\Denwer\home\zrelt.com\protected\yiic(4): require_once()
+
+2014/06/29 08:46:36 [error] [php] printf(): Too few arguments (E:\Denwer\home\zrelt.com\protected\commands\DownloadCommand.php:35)
+Stack trace:
+#0 E:\Denwer\home\zrelt.com\framework\console\CConsoleCommandRunner.php(71): DownloadCommand->run()
+#1 E:\Denwer\home\zrelt.com\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run()
+#2 E:\Denwer\home\zrelt.com\framework\base\CApplication.php(180): CConsoleApplication->processRequest()
+#3 E:\Denwer\home\zrelt.com\framework\yiic.php(33): CConsoleApplication->run()
+#4 E:\Denwer\home\zrelt.com\protected\yiic.php(11): require_once()
+#5 E:\Denwer\home\zrelt.com\protected\yiic(4): require_once()
+

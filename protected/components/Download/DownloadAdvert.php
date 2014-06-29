@@ -5,6 +5,9 @@
  * Date: 28.06.14
  * Time: 21:31
  */
-class AvitoPage extends DownloadPage {
+abstract class DownloadAdvert {
 
+
+
+    abstract public function save();
 }

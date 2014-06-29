@@ -7,4 +7,11 @@
  */
 class AvitoPagination extends DownloadPagination {
 
+    public function obtainAdverts($page) {
+        return array();
+    }
+
+    function getPagesCount() {
+        return 0;
+    }
 }
