@@ -3,7 +3,7 @@
  * @var Advert $data
  */
 ?>
-<a href="<?php echo CHtml::normalizeUrl(array('views','id' => $data->id));?>" class="view">
+<a href="<?php echo CHtml::normalizeUrl(array('view','id' => $data->id));?>" class="view">
 
 
     <div class="type">
@@ -75,7 +75,7 @@
 
     <div class="price">
         <b>Цена:</b>
-        <?php echo number_format($data->price); ?> руб.
+        <?php echo $data->getHumanPrice(); ?>
     </div>
 
 </a>

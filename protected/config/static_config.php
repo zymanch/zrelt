@@ -12,7 +12,6 @@ return array(
     'preload'=>array('log'),
     'sourceLanguage' => 'en',
     'language' => 'ru',
-    'defaultController' => 'advert',
     // autoloading model and component classes
     'import'=>array(
         'application.models.base.*',
@@ -21,6 +20,7 @@ return array(
         'application.forms.*',
         'application.components.*',
         'application.controllers.*',
+        'application.behaviors.*',
     ),
 
 

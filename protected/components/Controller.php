@@ -22,14 +22,8 @@ class Controller extends CController
         $user = Yii::app()->user;
         $isGuest = $user->getIsGuest();
         $this->menu = array(
-            array('label'=>'Главная', 'url'=>array('/site/index')),
-            array('label'=>'О нас', 'url'=>array('/site/page', 'id'=>'about')),
-            array('label'=>'Фотографии', 'url'=>array('/site/page', 'id'=>'about'),'items' => array(
-                array('label'=>'Цена', 'url'=>array('/site/index')),
-                array('label'=>'Доставка и оплата', 'url'=>array('/site/index')),
-            )),
-            array('label'=>'Войти', 'url'=>array('/site/login'), 'visible'=>$isGuest),
-            array('label'=>'Выход ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!$isGuest)
+            array('label'=>'Главная', 'url'=>array('advert/index')),
+            array('label'=>'Карта', 'url'=>array('advert/map')),
         );
     }
 }

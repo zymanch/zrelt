@@ -21,7 +21,7 @@ class AdvertController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'map'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -37,6 +37,13 @@ class AdvertController extends Controller
 			),
 		);
 	}
+
+    public function actionMap() {
+        $advert = new SearchAdvert();
+        $this->render('map',array(
+            'model' => $advert,
+        ));
+    }
 
 	/**
 	 * Displays a particular model.
@@ -122,10 +129,6 @@ class AdvertController extends Controller
 	public function actionIndex()
 	{
         $advert = new SearchAdvert();
-        $attributes = Yii::app()->request->getParam('SearchAdvert');
-        if ($attributes) {
-            $advert->attributes = $attributes;
-        }
 		$this->render('index',array(
 			'model' => $advert,
 		));

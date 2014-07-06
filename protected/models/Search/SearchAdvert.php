@@ -41,7 +41,7 @@ class SearchAdvert extends Advert {
         );
     }
 
-    public function search() {
+    public function search($count = 60) {
         $criteria=new CDbCriteria;
         $criteria->with = array('address');
         $criteria->compare('t.type',$this->type);
@@ -64,7 +64,7 @@ class SearchAdvert extends Advert {
         }
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
-            'pagination' => array('pageSize' => 60)
+            'pagination' => array('pageSize' => $count)
         ));
     }
 

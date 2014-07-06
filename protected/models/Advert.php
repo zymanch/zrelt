@@ -13,6 +13,13 @@ class Advert extends CAdvert {
         return $variants[$this->type];
     }
 
+    public function getHumanPrice() {
+        if ($this->price) {
+            return number_format($this->price).'руб';
+        }
+        return 'договорная';
+    }
+
     public static function getVariants() {
         return array(
             '1_room' => 'Однокомнатная',

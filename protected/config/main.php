@@ -2,6 +2,8 @@
 
 return array(
 
+    'defaultController' => 'advert',
+
 	'modules'=>array(
 
 		'gii'=>array(

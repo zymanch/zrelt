@@ -176,3 +176,13 @@ a.view:visited {
 .clear {
     clear: both;
 }
+.map-items {
+    float: left;
+    width: 382px;
+}
+#map_content {
+    margin-top: 45px;
+    margin-left: 384px;
+    border: 1px solid black;
+    height: 550px;
+}

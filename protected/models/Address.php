@@ -7,4 +7,11 @@
  */
 class Address extends CAddress {
 
+    public function behaviors() {
+        return array(
+            'addGoogleCoordinates' => array(
+                'class' => 'AddGoogleCoordinatesBehaviors'
+            )
+        );
+    }
 }
