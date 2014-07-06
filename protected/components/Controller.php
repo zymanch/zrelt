@@ -24,6 +24,7 @@ class Controller extends CController
         $this->menu = array(
             array('label'=>'Главная', 'url'=>array('advert/index')),
             array('label'=>'Карта', 'url'=>array('advert/map')),
+            array('label'=>'Адреса', 'url'=>array('address/index')),
         );
     }
 }

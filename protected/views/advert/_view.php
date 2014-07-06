@@ -3,7 +3,7 @@
  * @var Advert $data
  */
 ?>
-<a href="<?php echo CHtml::normalizeUrl(array('view','id' => $data->id));?>" class="view">
+<a href="<?php echo CHtml::normalizeUrl(array('advert/view','id' => $data->id));?>" class="view">
 
 
     <div class="type">

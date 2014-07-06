@@ -2,6 +2,6 @@
 
 ?>
 
-<h1>Create Advert</h1>
+<h1>Create Address</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

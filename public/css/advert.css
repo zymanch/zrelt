@@ -1,0 +1,56 @@
+.view {
+    display: block;
+    float: left;
+    width: 380px;
+    position: relative;
+    height: 50px;
+    border: 1px dotted black;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    color: #000000;
+}
+a.view:visited {
+    color: #484848;
+}
+.view:hover {
+    background-color: #e0ffda;
+}
+.view .price {
+    right: 5px;
+    bottom: 5px;
+    position: absolute;
+    width: 150px;
+}
+.view .address {
+    left: 5px;
+    bottom: 5px;
+    position: absolute;
+    width: 150px;
+}
+.view .additional {
+    position: absolute;
+    right: 165px;
+    top: 5px;
+}
+.view .additional .exist{
+    color: green;
+}
+.view .additional .not-exist{
+    color: red;
+}
+.view .type {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+.view .space {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 150px;
+}
+.view .floor {
+    position: absolute;
+    right: 165px;
+    bottom: 5px;
+}

@@ -2,6 +2,7 @@
 /**
  * @var SearchAdvert $model
  */
+Yii::app()->clientScript->registerCssFile('/css/advert.css');
 ?>
 
 <div class="info padding">

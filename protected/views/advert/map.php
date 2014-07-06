@@ -3,6 +3,7 @@
  * @var SearchAdvert $model
  * @var Advert $advert
  */
+Yii::app()->clientScript->registerCssFile('/css/advert.css');
 $provider = $model->search(10);
 $script = Yii::app()->clientScript;
 $script->registerScriptFile('http://www.google.com/jsapi', CClientScript::POS_HEAD);

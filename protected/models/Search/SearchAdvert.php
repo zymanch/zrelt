@@ -20,6 +20,9 @@ class SearchAdvert extends Advert {
     public $price_from;
     public $price_to;
     public $complex;
+    public $steel_door;
+    public $phone;
+    public $balcony;
 
     public function __construct($scenario = 'search') {
         parent::__construct('search');
@@ -37,6 +40,7 @@ class SearchAdvert extends Advert {
             array('floor_max_from,floor_max_to', 'numerical', 'integerOnly'=>true),
             array('price_from,price_to', 'numerical', 'integerOnly'=>true),
             array('complex', 'length','max' => 12),
+            array('balcony,steel_door,phone', 'length','max' => 3),
             array('type', 'length','max' => 12),
         );
     }
@@ -45,11 +49,23 @@ class SearchAdvert extends Advert {
         $criteria=new CDbCriteria;
         $criteria->with = array('address');
         $criteria->compare('t.type',$this->type);
-        $criteria->compare('address.complex',$this->complex);
+        if ($this->balcony) {
+            $criteria->addCondition('t.balcony > 0');
+        }
+        if ($this->steel_door) {
+            $criteria->addCondition('t.steel_door="yes"');
+        }
+        if ($this->phone) {
+            $criteria->addCondition('t.phone="yes"');
+        }
         $attributes = array(
             'floor','floor_max','space_total','space_living',
             'space_cookroom','floor','floor_max','price'
         );
+        if ($this->complex) {
+            $complex = explode(',',$this->complex);
+            $criteria->addInCondition('address.complex',$complex);
+        }
         foreach ($attributes as $attribute) {
             $attributeFrom = $attribute.'_from';
             $attributeTo = $attribute.'_to';

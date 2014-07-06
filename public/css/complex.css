@@ -1,0 +1,9 @@
+.complex-view {
+    margin-right: 20px;
+    width: 370px;
+    float: left;
+}
+.complex-view .address {
+    float: left;
+    min-width: 30px;
+}
