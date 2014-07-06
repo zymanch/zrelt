@@ -1,0 +1,178 @@
+html {
+    height:100%;
+}
+body,html {
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    color: #555;
+    background: #EFEFEF;
+    background-image: url(../images/scribble_light.png);
+    background-repeat: repeat;
+    height:auto !important;
+    height:100%;
+    min-height:100%;
+    position: relative;
+}
+#logo {
+
+}
+#logo .brand{
+    padding:  2px 20px 0px 0px;
+}
+#logo .brand img.logo{
+    float: left;
+}
+#logo .brand .title{
+    float: left;
+    padding-top: 6px;
+    padding-left: 5px;
+    color: white;
+    font-weight: bold;
+}
+.title{
+    color: black;
+    font-family: fantasy;
+}
+.title span {
+    color: #ff9400;
+}
+#logo .navbar-inner {
+    background-image: none;
+    background-color: black;
+}
+#logo a,#logo a:visited{
+    color: white;
+}
+#logo li.active a, #logo li.active a:visited{
+    background-color: #d2ff8a;
+    color: #000000;
+    font-weight: bold;
+}
+#logo li.open a, #logo li.open a:visited{
+    background-color: #000000;
+    color: white;
+}
+#logo ul.dropdown-menu {
+    background-color: #d2ff8a;
+}
+#logo ul.dropdown-menu a, #logo ul.dropdown-menu a:visited {
+    color: black;
+    background-image:none;
+    background-color: #d2ff8a;
+    font-weight: bold;
+}
+#logo ul.dropdown-menu a:hover {
+    background-color: #a8ff29;
+}
+#content {
+    padding: 50px 10px 0px 10px;
+}
+#footer-spacer {
+    height: 22px;
+    clear: both;
+}
+#footer {
+    background-color: #000000;
+    height: 22px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    color: white;
+    padding: 5px 40px;
+}
+.info {
+    border: 1px dashed black;
+    box-shadow: 1px 1px 40px #747474;
+    border-radius: 20px;
+    background-color: white;
+    margin: 0px auto 20px auto;
+}
+.info.padding {
+    padding: 10px;
+}
+.view {
+    display: block;
+    float: left;
+    width: 380px;
+    position: relative;
+    height: 50px;
+    border: 1px dotted black;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    color: #000000;
+}
+a.view:visited {
+    color: #484848;
+}
+.view:hover {
+    background-color: #e0ffda;
+}
+.view .price {
+    right: 5px;
+    bottom: 5px;
+    position: absolute;
+    width: 150px;
+}
+.view .address {
+    left: 5px;
+    bottom: 5px;
+    position: absolute;
+    width: 150px;
+}
+.view .additional {
+    position: absolute;
+    right: 165px;
+    top: 5px;
+}
+.view .additional .exist{
+    color: green;
+}
+.view .additional .not-exist{
+    color: red;
+}
+.view .type {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+.view .space {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 150px;
+}
+.view .floor {
+    position: absolute;
+    right: 165px;
+    bottom: 5px;
+}
+.pagination {
+    text-align: right;
+    clear: both;
+}
+.search_field {
+    float: left;
+    width: 290px;
+    height: 40px;
+    vertical-align: middle;
+    line-height: 40px;
+    text-align: right;
+}
+.search_field input{
+    margin: 0 !important;
+}
+.search_field .inputs {
+    float: right;
+    margin-left: 10px;
+}
+.search-items {
+    border-top: 1px dotted black;
+    border-right: 1px dotted black;
+}
+.clear {
+    clear: both;
+}

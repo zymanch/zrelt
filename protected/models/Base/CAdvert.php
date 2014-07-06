@@ -129,9 +129,9 @@ class CAdvert extends ActiveRecord
 		$criteria->compare('address_id',$this->address_id,true);
 		$criteria->compare('floor',$this->floor,true);
 		$criteria->compare('floor_max',$this->floor_max);
-		$criteria->compare('houseroom_total',$this->houseroom_total);
-		$criteria->compare('houseroom_living',$this->houseroom_living);
-		$criteria->compare('cookroom',$this->cookroom);
+		$criteria->compare('space_total',$this->space_total);
+		$criteria->compare('space_living',$this->space_living);
+		$criteria->compare('space_cookroom',$this->space_cookroom);
 		$criteria->compare('balcony',$this->balcony);
 		$criteria->compare('phone',$this->phone);
 		$criteria->compare('steel_door',$this->steel_door,true);
@@ -147,6 +147,7 @@ class CAdvert extends ActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'pagination' => array('pageSize' => 60)
 		));
 	}
 

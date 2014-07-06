@@ -7,4 +7,4 @@
  */
 ?>
 <img src="images/logo.png" width="32px" height="32px" border="0px" class="logo">
-<div class="title"><span>z</span>Photos</div>
+<div class="title"><span>z</span>Relt</div>

@@ -72,8 +72,6 @@ class ZakamnedAdvert extends DownloadAdvert {
             'type' => $this->_getType(),
             'floor' => $this->_floor[0],
             'space_total' => intval($this->_space[0],10),
-            'space_living' => isset($this->_space[1]) && intval($this->_space[1],10)? intval($this->_space[1],10) : null,
-            'space_cookroom' => isset($this->_space[2]) && intval($this->_space[2],10)? intval($this->_space[2],10) : null,
             'seller_id' => $this->_getSellerId(),
             'address_id' => $this->_getAddressId(),
             'source_id' => 3,
@@ -83,6 +81,8 @@ class ZakamnedAdvert extends DownloadAdvert {
             'balcony' => is_null($this->_balcony) ? null : $this->_balcony,
             'phone' => is_null($this->_phoneExist) ? null : ($this->_phoneExist ? 'yes' : 'no'),
             'steel_door' => is_null($this->_steelDoor) ? null : ($this->_steelDoor ? 'yes' : 'no'),
+            'space_living' => isset($this->_space[1]) && intval($this->_space[1],10)? intval($this->_space[1],10) : null,
+            'space_cookroom' => isset($this->_space[2]) && intval($this->_space[2],10)? intval($this->_space[2],10) : null,
             'url' => $this->_url,
             'created' => date('Y-m-d H:i:s')
         );

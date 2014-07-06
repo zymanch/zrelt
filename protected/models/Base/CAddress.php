@@ -37,9 +37,8 @@ class CAddress extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('complex, complex_house, street_house', 'numerical', 'integerOnly'=>true),
-			array('complex_structure, street_structure', 'length', 'max'=>12),
-			array('street', 'length', 'max'=>64),
+			array('complex, complex_house, street_house, complex_structure, street_structure', 'length', 'max'=>12),
+			array('street,', 'length', 'max'=>64),
 			array('map_x, map_y', 'length', 'max'=>10),
 			array('status', 'length', 'max'=>7),
 			// The following rule is used by search().
