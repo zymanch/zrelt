@@ -11,7 +11,7 @@ class StreetsCommand extends CConsoleCommand {
     public function run($args) {
         Yii::import('ext.phpQuery.phpQuery.phpQuery',true);
         $url = 'http://www.most-e.ru/spravka-RT/Chelny-street-All/';
-        $content = file_get_contents($url);
+        $content = Yii::app()->curl->get($url);
         $document = phpQuery::newDocumentHTML($content,'windows-1252');
         $rows = $document->find('a');
         foreach ($rows as $link) {
@@ -23,7 +23,7 @@ class StreetsCommand extends CConsoleCommand {
     }
 
     protected function _downloadPage($url) {
-        $content = file_get_contents($url);
+        $content = Yii::app()->curl->get($url);
         //$document = phpQuery::newDocumentHTML($content,'utf-8');
         $document = phpQuery::newDocumentHTML($content,'windows-1252');
         $table = $document->find('table:eq(11)');
@@ -48,11 +48,11 @@ class StreetsCommand extends CConsoleCommand {
         $complex = explode('/',$complex[2], 3);
         $streetName = $street[1];
         $street = explode('/',$street[2]);
-        $streetNumber = trim($street[0]);
-        $streetStructure = isset($street[1]) ? trim($street[1]) : null;
-        $complexNumber = trim($complex[0]);
-        $complexHouse = trim($complex[1]);
-        $complexStructure = isset($complex[2]) ? trim($complex[2]) : null;
+        $streetNumber = strtolower(trim($street[0]));
+        $streetStructure = isset($street[1]) ? strtolower(trim($street[1])) : null;
+        $complexNumber = strtolower(trim($complex[0]));
+        $complexHouse = strtolower(trim($complex[1]));
+        $complexStructure = isset($complex[2]) ? strtolower(trim($complex[2])) : null;
         $streetName = trim(str_replace(
             array('б-р','ул.','пр.','пер.'),
             array('бульвар','улица','проспект','переулок'),

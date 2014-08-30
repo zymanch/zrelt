@@ -39,7 +39,7 @@ class CAddress extends ActiveRecord
 		return array(
 			array('complex, complex_house, street_house, complex_structure, street_structure', 'length', 'max'=>12),
 			array('street,', 'length', 'max'=>64),
-			array('map_x, map_y', 'length', 'max'=>10),
+			array('map_x, map_y', 'numerical'),
 			array('status', 'length', 'max'=>7),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

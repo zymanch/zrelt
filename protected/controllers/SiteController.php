@@ -28,7 +28,12 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-
+        Yii::import('ext.phpQuery.phpQuery.phpQuery',true);
+        $content = Yii::app()->curl->get('http://www.avito.ru/naberezhnye_chelny/kvartiry/4-k_kvartira_115_m_1316_et._311229058');
+        $document = phpQuery::newDocumentHTML($content,'iso-8859-1');
+        $x = explode(',',$document->find('h1[itemprop=name]')->html());
+        var_dump($x);
+        die();
 	}
 
 	/**

@@ -17,6 +17,12 @@ return array(
 	),
 
     'components' => array(
+        'curl' => array(
+            'class' => 'ext.curl-master.Curl',
+            'options' => array(
+                CURLOPT_VERBOSE        => false,
+            ),
+        ),
         'log'         => array(
             'class' => 'CLogRouter',
             'routes'=> array(

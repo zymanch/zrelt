@@ -75,4 +75,11 @@ class Advert extends CAdvert {
             'barchelor' => 'Малосемейка'
         );
     }
+
+    public function save($runValidation=true,$attributes=null) {
+        if ($this->getIsNewRecord()) {
+            $this->exchange = strpos($this->information,'обмен') ? 'yes' : 'no';
+        }
+        return parent::save($runValidation, $attributes);
+    }
 }

@@ -78,7 +78,6 @@ class EGMapGeocodedAddress
 	{	
 		$raw_data = $gmap_client->getGeocodingInfo($this->getRawAddress());
 		$data = CJSON::decode($raw_data);
-
 		if ('OK' != $data['status'])
 		{
 			return false;

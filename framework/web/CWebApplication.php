@@ -50,6 +50,7 @@
  * @property string $viewPath The root directory of view files. Defaults to 'protected/views'.
  * @property string $systemViewPath The root directory of system view files. Defaults to 'protected/views/system'.
  * @property string $layoutPath The root directory of layout files. Defaults to 'protected/views/layouts'.
+ * @property Curl $curl
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @package system.web

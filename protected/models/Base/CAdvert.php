@@ -16,8 +16,10 @@
  * @property integer $phone
  * @property string $steel_door
  * @property string $information
+ * @property string $exchange
  * @property integer $price
  * @property string $seller_id
+ * @property string $source_code
  * @property string $source_id
  * @property string $url
  * @property string $created
@@ -51,9 +53,10 @@ class CAdvert extends ActiveRecord
 			array('type, address_id, seller_id, source_id, url', 'required'),
 			array('floor_max, space_total, space_living, space_cookroom, balcony, price', 'numerical', 'integerOnly'=>true),
 			array('type', 'length', 'max'=>12),
+			array('source_code', 'length', 'max'=>16),
 			array('information', 'safe'),
 			array('address_id, floor, seller_id, source_id', 'length', 'max'=>10),
-			array('steel_door, phone', 'length', 'max'=>3),
+			array('steel_door, phone, exchange', 'length', 'max'=>3),
 			array('url', 'length', 'max'=>256),
 			array('status', 'length', 'max'=>7),
 			array('created, expired', 'safe'),

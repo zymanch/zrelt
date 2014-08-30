@@ -7,6 +7,8 @@
  */
 class ZakamnedAdvert extends DownloadAdvert {
 
+    const SOURCE_ID = 3;
+
     protected $_address;
     protected $_floor;
     protected $_space;
@@ -27,10 +29,10 @@ class ZakamnedAdvert extends DownloadAdvert {
         $balcony = pq($cells->elements[3])->text();
         $homePhone = pq($cells->elements[4])->text();
         $door = pq($cells->elements[5])->text();
-        $info = pq($cells->elements[6])->text();
-        $price = (int)(pq($cells->elements[7])->text());
-        $reltor = pq($cells->elements[8])->text();
-        $reltorPhone = pq($cells->elements[9])->text();
+        $reltor = pq($cells->elements[6])->text();
+        $reltorPhone = pq($cells->elements[7])->text();
+        $price = intval(pq($cells->elements[8])->text());
+        $info = pq($cells->elements[9])->text();
 
         $this->_address = explode('/',$address);
         $this->_floor = explode('/',$floor);
@@ -39,11 +41,27 @@ class ZakamnedAdvert extends DownloadAdvert {
         $this->_phoneExist = $this->_parseBool($homePhone, false);
         $this->_steelDoor = $this->_parseBool($door, false);
         $this->_info = trim($info);
-        $this->_price = $price ? $price * ($price < 20000 ? 1000*($price < 30 ? 1000: 1):1) : null;
+        $this->_price = $this->_parsePrice($price);
         $this->_seller = trim($reltor);
         $this->_sellerPhone = trim($reltorPhone);
         $this->_url = $url;
 
+    }
+
+    protected function _parsePrice($price) {
+        if (!$price) {
+            return null;
+        }
+        if ($price > 33 && $price < 55) {
+            if (!$this->_space[0]) {
+                return null;
+            }
+            return $this->_space[0]*$price*1000;
+        }
+        if ($price < 20000) {
+            return 1000*($price < 30 ? 1000: 1) * $price;
+        }
+        return $price;
     }
 
     protected function _parseBool($text,$canBeInt = false) {
@@ -72,9 +90,9 @@ class ZakamnedAdvert extends DownloadAdvert {
             'type' => $this->_getType(),
             'floor' => $this->_floor[0],
             'space_total' => intval($this->_space[0],10),
-            'seller_id' => $this->_getSellerId(),
+            'seller_id' => $this->_getSellerId($this->_seller, $this->_sellerPhone),
             'address_id' => $this->_getAddressId(),
-            'source_id' => 3,
+            'source_id' => self::SOURCE_ID,
         );
         $additionalAttributes = array(
             'floor_max' => $this->_floor[1],
@@ -98,62 +116,28 @@ class ZakamnedAdvert extends DownloadAdvert {
         }
         $advert->setAttributes($newAttributes);
         if (!$advert->save()) {
-            print ($advert->getErrorsAsText())."\n";
+            print iconv('utf-8','cp866',$advert->getErrorsAsText())."\n";
         }
         return array(
             $advert->id
         );
     }
 
-    protected function _getSellerId() {
-        $seller = Seller::model()->findByAttributes(array(
-            'type' => 'reltor',
-            'name' => $this->_seller
-        ));
-        if (!$seller) {
-            $seller = new Seller();
-            $seller->type = 'master';
-            $seller->name = $this->_seller;
-            $seller->save();
-        }
-        $phoneNumbers = $this->_extractPhones();
-        foreach ($phoneNumbers as $phoneNumber) {
-            $phone = SellerPhone::model()->findByAttributes(array(
-                'seller_id' => $seller->id,
-                'phone'     => $phoneNumber
-            ));
-            if (!$phone) {
-                $phone = new SellerPhone();
-                $phone->seller_id = $seller->id;
-                $phone->phone = $phoneNumber;
-                $phone->save();
-            }
-        }
-        return $seller->id;
-    }
-
-    protected function _extractPhones() {
-        return explode(',',preg_replace('/[^0-9\+,]+/','',$this->_sellerPhone));
-    }
 
     protected function _getAddressId() {
         preg_match('/[0-9]+/',$this->_address[0], $complex);
         $complex = $complex[0];
-        $complexHouse = isset($this->_address[1]) ? intval(trim($this->_address[1])) : null;
+        $complexHouse = isset($this->_address[1]) ? trim($this->_address[1]) : null;
         $complexStructure = isset($this->_address[2]) ? trim($this->_address[2]) : null;
-        $address = Address::model()->findByAttributes(array(
-            'complex' => $complex,
-            'complex_house' => $complexHouse,
-            'complex_structure' => $complexStructure
-        ));
-        if (!$address) {
-            $address = new Address();
-            $address->complex = $complex;
-            $address->complex_house = $complexHouse;
-            $address->complex_structure = $complexStructure;
-            if (!$address->save()) {
-                var_dump($address->getErrorsAsText());
-            }
+        $address = new Address();
+        $address->complex = $complex;
+        $address->complex_house = $complexHouse;
+        $address->complex_structure = $complexStructure;
+        if (!$address->save(false)) {
+            var_dump($address->getErrors());
+        }
+        if (!$address->id) {
+            var_dump($address->getAttributes());
         }
         return $address->id;
     }

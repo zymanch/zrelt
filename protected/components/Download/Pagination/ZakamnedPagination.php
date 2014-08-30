@@ -9,7 +9,7 @@ class ZakamnedPagination extends DownloadPagination {
 
     public function obtainAdverts($page) {
         $url = 'http://www.zakamned.ru/base/index.php?b='.$page;
-        $content = file_get_contents($url);
+        $content = Yii::app()->curl->get($url);
         $document = phpQuery::newDocumentHTML($content,'windows-1251');
         $rows = $document->find('tr');
         $result = array();
