@@ -1,0 +1,210 @@
+section{
+	padding:50px 0;
+}
+.main_heading {
+	color: #fff;
+	font-family: "Warnock Pro", "Goudy Old Style", "Palatino", "Book Antiqua", Georgia, serif;
+	font-style: italic;
+	font-weight: normal;
+	text-align:center;
+}
+.bg_pre {
+	background: #fafcfc;
+	height: 120px;
+	border: 1px solid #eee;
+	border-left: none;
+	border-right: none;
+	margin-top: 50px;
+}
+.prepend-top {
+	padding: 26px 33px;
+}
+.prepend-top_2 {
+	background: #fff;
+	margin-right: -15px;
+	padding: 29px 20px;
+}
+.glyphicons-list {
+	list-style:none;
+	padding:0
+}
+.glyphicons-list li {
+	display:inline-block;
+	float:left;
+	width:12.5%;
+	height:115px;
+	background-color:#f8f8f8;
+	border:1px solid #fff;
+	padding:10px;
+	transition:.3s ease
+}
+.glyphicons-list li:hover {
+	background-color:#eee
+}
+.glyphicons-list .glyphicon {
+	display:block;
+	text-align:center;
+	font-size:25px;
+	color:#222
+}
+.glyphicons-list .glyphicon-class {
+	display:block;
+	text-align:center;
+	margin-top:10px;
+	line-height:16px;
+	font-size:13px
+}
+.fa-page-header {
+	font-size:20px;
+	padding-bottom:15px;
+	border-bottom:1px solid #f1f1f1
+}
+.fontawesome-icon-list .fa-hover {
+	margin-bottom:5px;
+	transition:.3s ease
+}
+.fontawesome-icon-list .fa-hover:hover {
+	background-color:#f8f8f8
+}
+.fontawesome-icon-list .fa-hover .fa {
+	width:25px;
+	color:#222
+}
+@media (max-width:767px) {
+.glyphicons-list li {
+	width:25%
+}
+}
+.prism-languages {
+	list-style:none;
+	padding:0;
+	margin:20px 0
+}
+.prism-languages li {
+	width:33.3333%;
+	float:left
+}
+.prism-languages li code {
+	margin-left:8px
+}
+@media (max-width:991px) {
+.prism-languages li {
+	width:50%
+}
+}
+.window-content .btn {
+	margin-bottom:6px
+}
+.topnav {
+	width:100%;
+	padding:25px;
+	font-family: "CenturyGothicRegular", "Century Gothic", Arial, Helvetica, sans-serif;
+}
+ul.topnav {
+	font-size: 1em;
+	line-height: 0.5em;
+	list-style: outside none none;
+	margin: 6em 0 0;
+	padding:10px;
+	text-align: left;
+}
+ul.topnav li {
+  border-left: 1px solid #fff;
+}
+ul.topnav li a {
+	line-height: 10px;
+	font-size: 16px;
+	padding: 10px 5px;
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	margin-bottom: 10px;
+}
+ul.topnav li a:hover {
+	background-color:#02b2e1;
+	color:white;
+}
+ul.topnav ul {
+	margin: 0;
+	padding: 0;
+	display: none;
+}
+ul.topnav ul li {
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+ul.topnav ul li a {
+	padding-left: 20px;
+	font-size:13px;
+	font-weight: normal;
+	outline:0;
+}
+ul.topnav ul li a:hover {
+	background-color:#02b2e1;
+	color:#fff;
+}
+ul.topnav ul li a:active, ul.topnav ul li a:hover {
+	background-color:#02b2e1;
+	color:#fff;
+}
+ul.topnav ul li a:active, ul.topnav ul li a:hover {
+	background-color:#02b2e1;
+	color:#fff;
+}
+ul.topnav ul ul li a {
+	color:silver;
+	padding-left: 40px;
+}
+ul.topnav ul ul li a:hover {
+	background-color:#D3CEB8;
+	color:#675C7C;
+}
+ul.topnav span {
+	float:right;
+}
+.file-tree ul {
+  list-style: outside none none;
+  margin-bottom: 12px;
+  padding-left: 26px;
+}
+.file-tree li::before {
+  display: inline-block;
+  font: 14px/1 FontAwesome;
+  margin-right: 6px;
+  width: 16px;
+}
+.file-tree li.is-folder::before {
+  color: #f4db0b;
+  content: "";
+  cursor: pointer;
+}
+.file-tree li.is-folder {
+  cursor: pointer;
+}
+.file-tree li.is-file::before {
+  color: #cedde0;
+  content: "";
+}
+.file-tree ul ul {
+  display: block;
+}
+
+.back-to-top {
+  background: #02b2e1;
+  bottom: 0;
+  color: #fff;
+  display: none;
+  font-size: 20px;
+  height: 42px;
+  padding: 8px;
+  position: fixed;
+  right: 1%;
+  text-decoration: none;
+  width: 42px;
+  z-index: 1000;
+}
+
+.back-to-top:focus, .back-to-top:hover {
+  color: #fff;
+}
