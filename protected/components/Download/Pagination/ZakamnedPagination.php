@@ -10,7 +10,11 @@ class ZakamnedPagination extends DownloadPagination {
     public function obtainAdverts($page) {
         $url = 'http://www.zakamned.ru/base/index.php?b='.$page;
         $content = Yii::app()->curl->get($url);
-        $document = phpQuery::newDocumentHTML($content,'windows-1251');
+        //$content = iconv('CP866','CP1251',$content);
+        $content = str_replace('windows-1251','utf-8', $content);
+        $content = iconv('windows-1251','utf-8',$content);
+        //file_put_contents(__DIR__.'/dump.html', $content);die();
+        $document = phpQuery::newDocumentHTML($content,'utf-8');
         $rows = $document->find('tr');
         $result = array();
         $skipRow = true;
@@ -24,7 +28,7 @@ class ZakamnedPagination extends DownloadPagination {
         return $result;
     }
 
-    function getPagesCount() {
+    public function getPagesCount() {
         return 5;
     }
 }

@@ -1,0 +1,24 @@
+@charset "utf-8";
+/*-----------------------------
+[Master Stylesheet]
+Project:        Real Estate
+Version:        1.0
+Last change:    05.05.2016
+Primary use:    Build Dreams Business Template
+Author:         Logicsforest
+URL:            http://
+*/
+
+@import "bootstrap.min.css";
+@import "font-awesome.min.css";
+@import "animate.min.css";
+@import "owl.carousel.css";
+@import "range-Slider.min.css";
+@import "style.css";
+@import "responsive.css";
+@import "menu.css";
+@import "mmenu.all.css";
+@import "jPushMenu.css";
+
+
+

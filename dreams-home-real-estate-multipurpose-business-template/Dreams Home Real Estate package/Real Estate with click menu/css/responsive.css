@@ -1,0 +1,74 @@
+@media (min-width: 1282px){
+}
+@media only screen and (max-width: 980px){
+}
+@media only screen and (max-width: 800px){
+}
+@media only screen and (max-width: 768px){
+	.about-slider {
+  margin-top: 15px;
+}
+.query-submit-button {
+  float: none !important;
+  text-align:center;
+}
+.booking {
+  margin-bottom: 15px;
+}
+.booking a.btn-primary {
+  display: table-caption;
+}
+}
+
+@media (max-width: 360px){
+}
+@media (max-width: 480px){
+.booking {
+  margin-bottom: 10px;
+}
+header .navbar-brand > img {
+  max-width: 64%;
+}
+.topbar .col-md-5{
+	text-align:center;
+}
+.booking a.btn-primary {
+	display:block;
+}
+.query-submit-button {
+  text-align: center;
+}
+.btn-slide {
+  display: inline-block;
+  margin-top: 20px;
+}
+.group-button-search {
+  text-align: center;
+}
+#sync2 .item {
+  margin:0;
+}
+#property .image-heading > span {
+  padding-right: 25px;
+}
+.about-slider {
+  margin-top: 15px;
+}
+.query-submit-button {
+  float: none !important;
+}
+.servicesone {
+  padding: 0 15px 25px;
+}
+.feature .image-heading > span {
+  float: none !important;
+}
+#property .property-box .box-heading {
+  margin-bottom:0;
+  padding: 5px 15px;
+}
+#property .property-box .area-box {
+  margin: -19px;
+}
+}
+

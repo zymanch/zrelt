@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+require __DIR__.'/load.php';
+// Initialize PHP environment variables
+if(isset($config['php_ini'])){
+    foreach($config['php_ini'] as $key => $value){
+        ini_set($key, $value);
+    }
+    unset($config['php_ini']);
+}
+
+
+unset($config['components']['errorHandler']);
+unset($config['components']['user']);
+unset($config['components']['session']);
+unset($config['components']['request']);
+$config['controllerNamespace'] = 'commands';
+$application = new yii\console\Application($config);
+$exitCode = $application->run();
+exit($exitCode);

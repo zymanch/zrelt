@@ -45,6 +45,7 @@ class AddressController extends Controller
 	 */
 	public function actionView($id)
 	{
+        //$this->layout = '//layouts/guest';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));

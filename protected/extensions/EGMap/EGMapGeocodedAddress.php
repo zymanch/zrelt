@@ -80,7 +80,7 @@ class EGMapGeocodedAddress
 		$data = CJSON::decode($raw_data);
 		if ('OK' != $data['status'])
 		{
-			return false;
+			throw new Exception($data["error_message"]);
 		}
 
 		$location = $data['results'][0]['geometry'];
@@ -88,7 +88,6 @@ class EGMapGeocodedAddress
 		$this->lat = $location['location']['lat'];
 		$this->lng = $location['location']['lng'];
 		$this->accuracy = $location['location_type'];
-
 		return $this->accuracy;
 	}
 

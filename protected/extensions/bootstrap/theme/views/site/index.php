@@ -1,5 +1,5 @@
 <?php
-/* @var $this SiteController */
+/* @var $this ProfileController */
 
 $this->pageTitle=Yii::app()->name;
 ?>

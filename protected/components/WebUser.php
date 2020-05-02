@@ -14,21 +14,8 @@ class WebUser extends CWebUser {
     /**
      * @return User
      */
-    public function getUserOrRegisterTemporary() {
-        $user = $this->getUser();
-        if (!$user) {
-            $identity=new TemporaryIdentity();
-            $identity->authenticate();
-            $this->login($identity, 3600*24*30);
-            return true;
-        }
-        return $user;
-    }
-
-    /**
-     * @return User
-     */
     public function getUser() {
+        var_dump($this->id);die();
         if (!$this->id) {
             return null;
         }
@@ -37,13 +24,5 @@ class WebUser extends CWebUser {
         }
         $this->_user = User::model()->findByPk($this->id);
         return $this->_user;
-    }
-
-    public function getIsGuest() {
-        return parent::getIsGuest();
-    }
-
-    public function getIsRegistered() {
-        return $this->id && $this->getUser()->temporary == User::NO;
     }
 }

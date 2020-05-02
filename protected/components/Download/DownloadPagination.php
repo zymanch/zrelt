@@ -8,12 +8,12 @@
 Yii::import('ext.phpQuery.phpQuery.phpQuery',true);
 abstract class DownloadPagination {
 
-    abstract function getPagesCount();
+    abstract public function getPagesCount();
 
     /**
      * @param $page
      * @return DownloadAdvert
      */
-    abstract function obtainAdverts($page);
+    abstract public function obtainAdverts($page);
 
 }

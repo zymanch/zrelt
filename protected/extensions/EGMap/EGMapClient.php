@@ -36,12 +36,13 @@ class EGMapClient
 	 * @since 2011-04-21 Matt Cheale Removed the format option so it can be customised in the geocoding methods.
 	 * @since 2011-12-19 Antonio Ramirez renamed to make use of more APIs
 	*/
-	const API_GEOCODE_URL = 'http://maps.googleapis.com/maps/api/geocode/';
+	const API_GEOCODE_URL = 'https://maps.googleapis.com/maps/api/geocode/';
 	/**
 	 * The URL for the RESTful elevation API
 	 */
-	const API_ELEVATION_URL = 'http://maps.googleapis.com/maps/api/elevation/';
+	const API_ELEVATION_URL = 'https://maps.googleapis.com/maps/api/elevation/';
 
+	protected $_key;
 	/**
 	 *
 	 * Constructor
@@ -53,7 +54,9 @@ class EGMapClient
 	 * @param array $key
 	 * @since 2011-04-21 Matt Cheale $key parameter deprecated
 	 */
-	public function __construct($key = array()){}
+	public function __construct($key = array()){
+	    $this->_key = $key;
+    }
 
 	/**
 	 * Sets the Google Maps API key
@@ -61,7 +64,9 @@ class EGMapClient
 	 * @deprecated
 	 * @since 2011-04-21 Matt Cheale Deprecated as API Keys are no longer required.
 	 */
-	public function setAPIKey($domain, $key, $setAsDefault = false){}
+	public function setAPIKey($domain, $key, $setAsDefault = false){
+        $this->_key = $key;
+    }
 
 	/**
 	 *
@@ -152,7 +157,10 @@ class EGMapClient
 	public function getGeocodingInfo($address, $format = 'json')
 	{
 		$apiURL = self::API_GEOCODE_URL . $format . '?address=' . urlencode($address) . '&sensor=false';
-		return $this->callApi($apiURL);
+		if ($this->_key) {
+		    $apiURL.='&key='.$this->_key;
+        }
+        AddGoogleCoordinatesBehavior		return $this->callApi($apiURL);
 	}
 
 	/**

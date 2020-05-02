@@ -1,0 +1,288 @@
+@media (min-width: 10253px) {
+.property-list-list .property-list-list-label::before {
+	top:20px;
+}
+}
+@media only screen and (max-width: 980px) {
+.property-list-list .property-list-list-label::before {
+	top:32px;
+}
+}
+@media only screen and (max-width: 800px) {
+}
+@media only screen and (max-width: 768px) {
+.about-slider {
+	margin-top: 15px;
+}
+.query-submit-button {
+	float: none !important;
+	text-align:center;
+}
+.booking {
+	margin-bottom: 15px;
+}
+.booking a.btn-primary {
+	display: table-caption;
+}
+#mobile-menu-button {
+	margin-top: -45px;
+	text-align: right !important;
+	width: 100% !important;
+}
+.logo img {
+	width: auto;
+	margin-left: -25px;
+}
+header.navigation.affix .logo img {
+	width: auto;
+}
+.topbar {
+	display:none;
+}
+.home_1 .search {
+	padding: 0;
+}
+.selection {
+	width: 100%;
+}
+#email-label {
+	margin: 5px 0;
+}
+.visible-xs .fa {
+	border: 1px solid #02b2e1;
+	padding: 5px 10px;
+}
+.contact-us .contact-us-scroll {
+	left: 0;
+	margin-top: 0;
+	padding: 60px 0;
+	position: relative;
+	right: 0;
+	top: 0;
+}
+.contact-us-wrapper, .new-letter-wrapper {
+	float: none;
+	height: auto;
+	padding-bottom: 60px;
+	padding-top: 60px;
+	width: 100%;
+}
+.contact .contact-us-wrapper .img-contact-people {
+	left: 0;
+	max-width: 300px;
+	height: auto
+}
+.contact-us {
+	min-height: 580px
+}
+.contact-us .contact-us-scroll {
+	width: auto;
+	margin-left: 0;
+	left: 30px;
+	right: 30px
+}
+.contact-us-wrapper, .new-letter-wrapper {
+	padding: 0 20px
+}
+.contact-us .contact-us-scroll {
+	top: 0;
+	left: 0;
+	right: 0;
+	margin-top: 0;
+	position: relative;
+	padding: 60px 0
+}
+.contact-us-wrapper, .new-letter-wrapper {
+	width: 100%;
+	height: auto;
+	padding-top: 60px;
+	padding-bottom: 60px;
+	float: none
+}
+.contact-us-wrapper .title {
+	margin-bottom: 15px
+}
+.contact-us-wrapper .text {
+	margin-bottom: 15px
+}
+.new-letter-wrapper .title {
+	font-size: 2.143em;
+	margin-bottom: 15px
+}
+footer .footer-main .col-xs-6 {
+	width: 100%;
+}
+footer .footer-main .col-xs-6 {
+	width: 100%;
+}
+footer .footer-main .widget {
+	margin-bottom: 40px;
+}
+}
+@media (max-width: 480px) {
+#mobile-menu-button {
+	margin-top: -45px;
+	text-align: right !important;
+	width: 100% !important;
+}
+.logo img {
+	width: auto;
+	margin-left: -25px;
+}
+header.navigation.affix .logo img {
+	width: auto;
+}
+.booking {
+	margin-bottom: 10px;
+}
+header .navbar-brand > img {
+	max-width: 64%;
+}
+.topbar .col-md-5 {
+	text-align:center;
+}
+.booking a.btn-primary {
+	display:block;
+}
+.query-submit-button {
+	text-align: center;
+}
+.btn-slide {
+	display: inline-block;
+	margin-top: 20px;
+}
+.group-button-search {
+	text-align: center;
+}
+#sync2 .item {
+	margin:0;
+}
+#property .image-heading > span {
+	padding-right: 25px;
+}
+.about-slider {
+	margin-top: 15px;
+}
+.query-submit-button {
+	float: none !important;
+}
+.servicesone {
+	padding: 0 15px 25px;
+}
+.feature .image-heading > span {
+	float: none !important;
+}
+#property .property-box .box-heading {
+	margin-bottom:0;
+	padding: 5px 15px;
+}
+#property .property-box .area-box {
+	margin: -19px;
+}
+.property-list-list .property-list-list-label::before {
+	top:20px;
+}
+#tenat-form .side-line {
+	padding:15px;
+}
+.home_1 .search {
+	padding: 0;
+}
+.selection {
+	width: 100%;
+}
+#email-label {
+	margin: 5px 0;
+}
+.wide-1 .ab-us-img {
+	height: 200px;
+	position: inherit;
+	width: 100%;
+}
+.newest-properties-content .col-xs-6 {
+	width: 100%;
+}
+.banner-sale-off .banner-sale-off-wrapper {
+	display: inline-block;
+	height: auto;
+	position: relative;
+	right: auto;
+	text-align: right;
+	width: 100%;
+}
+.banner-sale-off .banner-sale-off-wrapper {
+	display: inherit;
+	top: 60px;
+}
+.banner-sale-off .banner-sale-off-wrapper .name-house {
+	display: block;
+	width: 100%;
+}
+.banner-sale-off .banner-sale-off-wrapper .name-house, .banner-sale-off .banner-sale-off-wrapper .price-house {
+	text-align: center;
+}
+.banner-sale-off .name-house {
+	display: block;
+	margin-bottom: 20px;
+	text-align: right;
+}
+.banner-sale-off .banner-sale-off-background .background-house {
+	bottom: 7px;
+	width: 80%;
+}
+.topbar {
+	display:none;
+}
+.visible-xs .fa {
+	border: 1px solid #02b2e1;
+	padding: 5px 10px;
+}
+.contact .contact-us-wrapper .img-contact-people {
+	left: 0;
+	max-width: 300px;
+	height: auto
+}
+.contact-us {
+	min-height: 580px
+}
+.contact-us .contact-us-scroll {
+	width: auto;
+	margin-left: 0;
+	left: 30px;
+	right: 30px
+}
+.contact-us-wrapper, .new-letter-wrapper {
+	padding: 0 20px
+}
+.contact-us .contact-us-scroll {
+	top: 0;
+	left: 0;
+	right: 0;
+	margin-top: 0;
+	position: relative;
+	padding: 60px 0
+}
+.contact-us-wrapper, .new-letter-wrapper {
+	width: 100%;
+	height: auto;
+	padding-top: 60px;
+	padding-bottom: 60px;
+	float: none
+}
+.contact-us-wrapper .title {
+	margin-bottom: 15px
+}
+.contact-us-wrapper .text {
+	margin-bottom: 15px
+}
+.new-letter-wrapper .title {
+	font-size: 2.143em;
+	margin-bottom: 15px
+}
+footer .footer-main .col-xs-6 {
+	width: 100%;
+}
+footer .footer-main .widget {
+	margin-bottom: 40px;
+}
+}

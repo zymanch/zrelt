@@ -7,7 +7,7 @@
  */
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name'=>'My Web Application',
+    'name'=>'',
     // preloading 'log' component
     'preload'=>array('log'),
     'sourceLanguage' => 'en',
@@ -19,6 +19,7 @@ return array(
         'application.models.search.*',
         'application.forms.*',
         'application.components.*',
+        'application.components.Command.*',
         'application.controllers.*',
         'application.behaviors.*',
     ),
@@ -26,6 +27,9 @@ return array(
 
     // application components
     'components'=>array(
+        'authManager'  => [
+            'class' => 'AuthManager',
+        ],
         'user'=>array(
             'class'=>'WebUser',
             'allowAutoLogin'=>true,
@@ -68,7 +72,9 @@ return array(
 
     'params'=>array(
         // this is used in contact page
-        'adminEmail'=>'webmaster@example.com',
+        'adminEmail'=>'sasha@zrelt.com',
+        'adminPhone'=>'+79274162066',
         'salt' => 'salt',
+        'yandex_map_key' => 'e7c23b6e-ab16-4781-9848-d53df3f6da76'
     ),
 );

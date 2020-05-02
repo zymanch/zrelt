@@ -1,55 +1,52 @@
 <?php /* @var $this Controller */ ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<?php /* @var $content */ ?>
+<!DOCTYPE HTML>
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <base href="/"/>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
-
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Build Dreams Business Template" />
+<meta name="keywords" content="hotels,resturent,tour & travels,Real estate,responsive,agency" />
+<meta name="author" content="Logicsforest" />
+<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/css/range-Slider.min.css">
+<link rel="stylesheet" type="text/css" href="/css/main/style.css?<?=time();?>">
+<link rel="stylesheet" type="text/css" href="/css/main/responsive.css">
+<link rel="stylesheet" type="text/css" href="/css/main/menu.css?<?=time();?>">
+<link rel="stylesheet" type="text/css" href="/css/main/mmenu.all.css">
+<link rel="stylesheet" type="text/css" href="/css/main/jPushMenu.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?<?=time();?>">
+<link rel="shortcut icon" href="/images/heading-icon.png">
+<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
 </head>
-
 <body>
 
-<?php $this->widget('bootstrap.widgets.TbNavbar',array(
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>$this->menu,
+<?php $this->renderPartial('//layouts/main/_topbar');?>
+<?php $this->renderPartial('//layouts/main/_menu');?>
 
-        ),
-    ),
-    'brand' => $this->renderPartial('//layouts/logo',null,true),
-    'htmlOptions' => array('id' => 'logo')
-)); ?>
+<?php $this->widget('bootstrap.widgets.TbAlert', array()); ?>
+<?php echo $content; ?>
+<footer id="footer">
+    <?php $this->renderPartial('//layouts/common/_footer');?>
+    <?php $this->renderPartial('//layouts/common/_footer2');?>
+</footer>
 
-<div id="content">
-    <?php $this->widget('bootstrap.widgets.TbAlert', array()); ?>
-    <?php echo $content; ?>
-    <div id="footer-spacer"></div>
-</div>
-
-
-<div id="footer">
-    Copyright &copy; <?php echo date('Y'); ?> by My Company.
-</div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Ошибка</h4>
-            </div>
-            <div class="modal-body" id="myModalBody">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/modernizr-2.8.3.min.js"></script>
+<script src="/js/range-Slider.min.js"></script>
+<script src="/js/selectbox-0.2.min.js"></script>
+<script src="/js/select2.min.js"></script>
+<script src="/js/jPushMenu.js"></script>
+<script src="/js/jquery.scrollUp.min.js"></script>
+<script src="/js/custom-js.js"></script>
 </body>
 </html>

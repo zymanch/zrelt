@@ -1,0 +1,33 @@
+{
+  "name": "zymanch/zrelt",
+  "description": "Relt site",
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0",
+    "yiisoft/yii2": "2.0.32",
+    "yiisoft/yii2-bootstrap": "2.0.10",
+    "yiisoft/yii2-swiftmailer": "2.1.2",
+    "yiisoft/yii2-httpclient": "2.0.12",
+    "tightenco/collect": "^5.7",
+    "yiisoft/yii2-debug": "~2.1.13",
+    "bower-asset/jquery": "2.2.*@stable | 2.1.*@stable | 1.11.*@stable | 1.12.*@stable"
+  },
+  "require-dev": {
+    "gtflixtv/active-generator": "dev-master",
+    "yiisoft/yii2-gii": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "commands\\": "src",
+      "components\\": "src",
+      "controllers\\": "src",
+      "module\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "ssh://git@devbase.gtflixtv.com/active-generator.git"
+    }
+  ]
+}

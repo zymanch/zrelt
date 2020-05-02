@@ -9,7 +9,7 @@ Yii::import('ext.EGMap.*');
 class AddGoogleCoordinatesBehavior extends CActiveRecordBehavior {
 
 
-    public function beforeSave() {
+    public function beforeSave($event) {
         /** @var Address $owner */
         $owner = $this->getOwner();
         $attributes = array('complex','complex_house','complex_structure',
@@ -35,15 +35,9 @@ class AddGoogleCoordinatesBehavior extends CActiveRecordBehavior {
             }
             $geocodedAddress = new EGMapGeocodedAddress($searchString);
             $geocodedAddress->geocode($gMap->getGMapClient());
-            /*var_dump(
-                iconv('utf-8','cp866',$searchString),
-                $geocodedAddress->getLat(),
-                $geocodedAddress->getLng()
-            );die();*/
             $owner->map_x = $geocodedAddress->getLat();
             $owner->map_y = $geocodedAddress->getLng();
         }
-        var_dump($owner->map_x,$owner->map_y);
         return true;
     }
 }

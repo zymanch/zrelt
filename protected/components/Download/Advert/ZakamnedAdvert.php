@@ -5,6 +5,7 @@
  * Date: 29.06.14
  * Time: 7:18
  */
+Yii::import('ext.EGMap.*');
 class ZakamnedAdvert extends DownloadAdvert {
 
     const SOURCE_ID = 3;
@@ -34,7 +35,7 @@ class ZakamnedAdvert extends DownloadAdvert {
         $price = intval(pq($cells->elements[8])->text());
         $info = pq($cells->elements[9])->text();
 
-        $this->_address = explode('/',$address);
+        $this->_address = $address;
         $this->_floor = explode('/',$floor);
         $this->_space = explode('/',$space);
         $this->_balcony = $this->_parseBool($balcony, true);
@@ -125,21 +126,9 @@ class ZakamnedAdvert extends DownloadAdvert {
 
 
     protected function _getAddressId() {
-        preg_match('/[0-9]+/',$this->_address[0], $complex);
-        $complex = $complex[0];
-        $complexHouse = isset($this->_address[1]) ? trim($this->_address[1]) : null;
-        $complexStructure = isset($this->_address[2]) ? trim($this->_address[2]) : null;
-        $address = new Address();
-        $address->complex = $complex;
-        $address->complex_house = $complexHouse;
-        $address->complex_structure = $complexStructure;
-        if (!$address->save(false)) {
-            var_dump($address->getErrors());
-        }
-        if (!$address->id) {
-            var_dump($address->getAttributes());
-        }
-        return $address->id;
+        $accessor = new AddressFindOrCreateCommand();
+        $address = $accessor->findOrCreate($this->_address);
+        return $address ? $address->id : null;
     }
 
     protected function _getType() {

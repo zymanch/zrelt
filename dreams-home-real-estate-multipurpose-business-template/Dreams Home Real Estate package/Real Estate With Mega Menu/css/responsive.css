@@ -1,0 +1,38 @@
+@media (min-width: 1282px){
+}
+@media only screen and (max-width: 980px){
+}
+@media only screen and (max-width: 800px){
+}
+@media only screen and (max-width: 768px){
+}
+@media (max-width: 360px){
+}
+@media (max-width: 480px){
+.booking {
+  margin-bottom: 10px;
+}
+header .navbar-brand > img {
+  max-width: 64%;
+}
+.topbar .col-md-5{
+	text-align:center;
+}
+.booking a.btn-primary {
+	display:block;
+}
+.query-submit-button {
+  text-align: center;
+}
+.btn-slide {
+  display: inline-block;
+  margin-top: 20px;
+}
+.group-button-search {
+  text-align: center;
+}
+#sync2 .item {
+  margin:0 !important;
+}
+}
+

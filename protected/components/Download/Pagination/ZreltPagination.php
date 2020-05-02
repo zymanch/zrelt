@@ -11,7 +11,7 @@ class ZreltPagination extends DownloadPagination {
         return array();
     }
 
-    function getPagesCount() {
+    public function getPagesCount() {
         return 0;
     }
 }

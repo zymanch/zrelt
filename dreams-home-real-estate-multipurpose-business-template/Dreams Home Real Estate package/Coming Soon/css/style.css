@@ -1,0 +1,272 @@
+/*
+  Project Name : Dream Rastaurant
+  Author : LogicsForest
+  Project Date: 01 June, 2016
+  Author Email : logicsforest@gmail.com
+*/
+
+
+/*FONTS */
+@font-face {
+	font-family: 'robotobold';
+	src: url('../fonts/roboto-bold-webfont.eot');
+	src: url('../fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/roboto-bold-webfont.woff2') format('woff2'),  url('../fonts/roboto-bold-webfont.woff') format('woff'),  url('../fonts/roboto-bold-webfont.ttf') format('truetype'),  url('../fonts/roboto-bold-webfont.svg#robotobold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'robotoregular';
+	src: url('../fonts/roboto-regular-webfont.eot');
+	src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/roboto-regular-webfont.woff2') format('woff2'),  url('../fonts/roboto-regular-webfont.woff') format('woff'),  url('../fonts/roboto-regular-webfont.ttf') format('truetype'),  url('../fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+body {
+	font-family: 'robotoregular';
+	margin: 0;
+	font-size: 16px;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	background:#000;
+}
+html {
+	width: 100%;
+	height: 100%;
+}
+.container{
+	width:1170px;
+	max-width:100%;
+}
+/* General  */
+
+a, a:hover, a:focus {
+	color:#fff;
+}
+a:hover {
+}
+a:focus {
+	outline:none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'robotobold';
+	margin:0;
+	padding:0;
+	font-weight:300;
+}
+h1 {
+	font-size:72px;
+}
+h2 {
+	font-size:40px;
+}
+h3 {
+	font-size:36px;
+}
+h4 {
+	font-size:30px;
+}
+h5 {
+	font-size:24px;
+}
+h6 {
+	font-size:18px;
+}
+.loader {
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	z-index:9999;
+	background:#000 url(../images/loader.gif) 50% 50% no-repeat;
+}
+/* Header  */
+.header-overlay {
+	background:rgba(0, 0, 0, 0.6);
+	padding:30px 0;
+}
+#header .logo > img {
+	padding-bottom: 50px;
+}
+#header .main-head h2, #header .main-head h4 {
+	font-weight:300;
+}
+#header .main-head h4 {
+	line-height:40px;
+}
+/* Countdown  */	
+	
+	#countdown-area {
+	padding:40px 0;
+	margin:0 0 40px;
+}
+ul.countdown {
+	list-style:none;
+	margin:0;
+	padding:0;
+	display:block;
+	text-align:center;
+}
+ul.countdown li {
+	display:inline-block;
+	margin:0 20px;
+	padding:0;
+}
+ul.countdown li span {
+	font-family: 'robotobold';
+	width:100px;
+	display:block;
+	font-size:48px;
+}
+ul.countdown li.seperator {
+	font-size:80px;
+	line-height:70px;
+	vertical-align:top;
+}
+ul.countdown li p {
+	color: rgba(255,255,255,0.5);
+	font-size: 18px;
+	text-transform:capitalize;
+	margin:0;
+	padding:15px 0 30px 0;
+}
+/* Main Heading Style Starts */
+
+	.main-head {
+	text-align:center;
+	padding:0 0 40px;
+}
+.main-head h2, .main-head p {
+}
+.main-head h2 {
+	padding:0 0 20px;
+}
+.main-head p {
+	font-size:24px;
+	line-height:36px;
+}
+/* Contact  */
+
+input {
+	border: 1px solid #fff !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+#contact-form button {
+  background: #02b2e1;
+  border-radius: 0;
+  padding: 10px 30px;
+  border:none;
+}
+#contact-form button:hover {
+  background: #fff;
+  color:#02b2e1;
+}
+#contact {
+  background: #202020;
+ padding:50px 0;
+}
+.MT40 {
+	margin-top:40px;
+}
+#contact p {
+	font-size:16px;
+}
+#contact-area {
+}
+#contact-area h3 {
+	padding:0 0 38px 0;
+}
+#contact-form {
+}
+#contact-form .form-group {
+	margin:0 0 20px;
+}
+#contact-form .form-control {
+	font-size:16px;
+	font-weight:400;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+#contact-form .form-control:focus {
+	border-color:#fff;
+}
+#contact-form input.form-control {
+	height:40px;
+	line-height:40px !important;
+	padding:3px 20px 0;
+	border-radius:0;
+}
+/* Footer  */
+
+#footer {
+	padding:10px 0;
+	margin-top:40px;
+	font-size:13px;
+	text-align:center;
+}
+#footer p {
+  margin-bottom: 20px;
+}
+/* Responsive */
+	
+	
+		
+/* Contact Style Starts */
+
+#contact h3, .address, #contact-form .form-group {
+	text-align:center;
+}
+#contact-area {
+	padding-bottom:20px;
+}
+}
+ @media (max-width: 767px) {
+/* Countdown Style Starts */
+
+	ul.countdown li {
+	display:inline-block;
+	margin:5px;
+	padding:0;
+}
+ul.countdown li span {
+	width:100px;
+	height:100px;
+	display:block;
+	font-size:48px;
+	font-weight:300;
+	line-height:100px;
+	border:2px solid #fff;
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border-radius:50%;
+}
+ul.countdown li p {
+	padding:15px 0;
+}
+/* Contact Style Starts */
+
+	#contact h3, .address, #contact-form .form-group {
+	text-align:center;
+}
+#contact-area {
+	padding-bottom:20px;
+}
+/* Footer Style Starts */
+
+	#footer ul.sm-links li a span {
+	width:45px;
+	height:45px;
+	line-height:42px;
+	font-size:20px;
+}
+.copyright {
+	font-size:16px;
+}
+}
