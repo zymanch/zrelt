@@ -7,6 +7,7 @@ use models\UserQuery;
 /**
  * This is the ActiveQuery class for [[models\User]].
  * @method UserQuery filterById($value, $criteria = null)
+ * @method UserQuery filterBySellerId($value, $criteria = null)
  * @method UserQuery filterByType($value, $criteria = null)
  * @method UserQuery filterByEmail($value, $criteria = null)
  * @method UserQuery filterByPhone($value, $criteria = null)
@@ -16,6 +17,7 @@ use models\UserQuery;
  * @method UserQuery filterByStatus($value, $criteria = null)
  * @method UserQuery filterByChanged($value, $criteria = null)
   * @method UserQuery orderById($order = Criteria::ASC)
+  * @method UserQuery orderBySellerId($order = Criteria::ASC)
   * @method UserQuery orderByType($order = Criteria::ASC)
   * @method UserQuery orderByEmail($order = Criteria::ASC)
   * @method UserQuery orderByPhone($order = Criteria::ASC)
@@ -24,6 +26,8 @@ use models\UserQuery;
   * @method UserQuery orderByCreated($order = Criteria::ASC)
   * @method UserQuery orderByStatus($order = Criteria::ASC)
   * @method UserQuery orderByChanged($order = Criteria::ASC)
+  * @method UserQuery withSeller($params = [])
+  * @method UserQuery joinWithSeller($params = null, $joinType = 'LEFT JOIN')
  */
 class BaseUserQuery extends \yii\db\ActiveQuery
 {

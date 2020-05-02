@@ -160,7 +160,7 @@ class EGMapClient
 		if ($this->_key) {
 		    $apiURL.='&key='.$this->_key;
         }
-        AddGoogleCoordinatesBehavior		return $this->callApi($apiURL);
+		return $this->callApi($apiURL);
 	}
 
 	/**

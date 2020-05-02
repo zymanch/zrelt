@@ -56,9 +56,6 @@ class Controller extends \module\design\Controller
     {
         $user = \Yii::$app->user;
         $items = [];
-        if ($user->can(AdvertController::PERMISSION_INDEX)) {
-            $items[] = ['label'=>'Список', 'url'=>['advert/index']];
-        }
         if ($user->can(AdvertController::PERMISSION_ADMIN)) {
             $items[] = ['label'=>'Администрирование', 'url'=>['advert/admin']];
         }

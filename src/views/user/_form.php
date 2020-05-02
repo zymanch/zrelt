@@ -1,6 +1,7 @@
 <?php
 /* @var $this UserController */
 
+use controllers\UserController;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use models\User;
@@ -19,7 +20,6 @@ use models\User;
     'method'=>'post',
     'layout'  => 'horizontal',
 ]); ?>
-
 
     <?php echo $form->field($model,'type')->dropDownList([User::TYPE_ADMIN => 'Администратор',User::TYPE_MANAGER => 'Менеджер',User::TYPE_USER => 'Пользователь']); ?>
     <?php echo $form->field($model,'email')->textInput(['size'=>50,'maxlength'=>50]); ?>

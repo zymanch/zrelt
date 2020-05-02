@@ -10,7 +10,8 @@
     "yiisoft/yii2-httpclient": "2.0.12",
     "tightenco/collect": "^5.7",
     "yiisoft/yii2-debug": "~2.1.13",
-    "bower-asset/jquery": "2.2.*@stable | 2.1.*@stable | 1.11.*@stable | 1.12.*@stable"
+    "bower-asset/jquery": "2.2.*@stable | 2.1.*@stable | 1.11.*@stable | 1.12.*@stable",
+    "yandex/geo": "v1.2.2"
   },
   "require-dev": {
     "gtflixtv/active-generator": "dev-master",
@@ -18,6 +19,8 @@
   },
   "autoload": {
     "psr-4": {
+      "assets\\": "src",
+      "behaviours\\": "src",
       "commands\\": "src",
       "components\\": "src",
       "controllers\\": "src",

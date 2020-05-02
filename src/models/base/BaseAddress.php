@@ -29,7 +29,7 @@ class BaseAddress extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'address';
+        return 'zrelt.address';
     }
 
     /**

@@ -1,1 +1,2 @@
 http://dom.mingkh.ru/tatarstan/naberezhnye-chelny/
+https://pchen66.github.io/Panolens/examples/panorama_loading_progress.html

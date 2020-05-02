@@ -1,8 +1,11 @@
 <?php
 namespace controllers;
+use models\AddressQuery;
 use models\Advert;
 use models\search\SearchAdvert;
+use models\User;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
 class AdvertController extends \components\Controller
@@ -106,11 +109,18 @@ class AdvertController extends \components\Controller
 	 */
 	public function actionCreate()
 	{
+	    /** @var User $user */
+	    $user = \Yii::$app->user->identity;
 		$model=new Advert;
-
-		if(isset($_POST['Advert']))
-		{
-			$model->load($_POST['Advert']);
+        if ($user->seller_id) {
+            $model->seller_id = $user->seller_id;
+        }
+		if($model->load($_POST)) {
+			$address = AddressQuery::model()->findOrCreate($model->address_name);
+			$model->address_id = $address?$address->id : null;
+            if ($user->type === User::TYPE_USER) {
+                $model->seller_id = $user->seller_id;
+            }
 			if($model->save()) {
                 \Yii::$app->session->setFlash('success','Объявление успешно создано');
                 $this->redirect(array('view', 'id' => $model->id));
@@ -123,18 +133,26 @@ class AdvertController extends \components\Controller
 	}
 
     /**
-     * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id the ID of the model to be updated
+     * @param $id
+     * @return string
+     * @throws ForbiddenHttpException
      * @throws NotFoundHttpException
      */
-	public function actionUpdate($id)
+    public function actionUpdate($id)
 	{
+        /** @var User $user */
+        $user = \Yii::$app->user->identity;
 		$model=$this->loadModel($id);
-
-		if(isset($_POST['Advert']))
-		{
-			$model->load($_POST['Advert']);
+        if ($user->type === User::TYPE_USER && $model->seller_id!==$user->seller_id) {
+            throw new ForbiddenHttpException();
+        }
+        $model->address_name = (string)$model->address;
+		if($model->load($_POST)) {
+            $address = AddressQuery::model()->findOrCreate($model->address_name);
+            $model->address_id = $address?$address->id : null;
+            if ($user->type === User::TYPE_USER) {
+                $model->seller_id = $user->seller_id;
+            }
 			if($model->save()) {
                 \Yii::$app->session->setFlash('success','Объявление успешно сохранено');
                 $this->redirect(array('view', 'id' => $model->id));

@@ -12,6 +12,15 @@ class Advert extends base\BaseAdvert {
     const EXCHANGE_YES = 'yes';
     const EXCHANGE_NO = 'no';
 
+    public $address_name;
+
+    public function rules()
+    {
+        return array_merge(parent::rules(), [
+            [['address_name'], 'string', 'max' => 256],
+        ]);
+    }
+
 
     public function getTypeLabel() {
         $variants = self::getVariants();
@@ -92,7 +101,7 @@ class Advert extends base\BaseAdvert {
         return array(
             'id' => 'ID',
             'type' => 'Тип',
-            'address_id' => 'Адресс',
+            'address_id' => 'Адрес',
             'floor' => 'Этаж',
             'floor_max' => 'Всего этажей',
             'space_total' => 'Общая площадь, м',

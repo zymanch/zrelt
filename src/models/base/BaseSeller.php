@@ -17,6 +17,7 @@ namespace models\base;
  *
  * @property \models\Advert[] $adverts
  * @property \models\SellerPhone[] $sellerPhones
+ * @property \models\User[] $users
  */
 class BaseSeller extends \yii\db\ActiveRecord
 {
@@ -25,7 +26,7 @@ class BaseSeller extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'seller';
+        return 'zrelt.seller';
     }
 
     /**
@@ -68,6 +69,12 @@ class BaseSeller extends \yii\db\ActiveRecord
      */
     public function getSellerPhones() {
         return $this->hasMany(\models\SellerPhone::className(), [BaseSellerPhonePeer::SELLER_ID => BaseSellerPeer::ID]);
+    }
+        /**
+     * @return \models\UserQuery
+     */
+    public function getUsers() {
+        return $this->hasMany(\models\User::className(), [BaseUserPeer::SELLER_ID => BaseSellerPeer::ID]);
     }
     
     /**

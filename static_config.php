@@ -42,7 +42,7 @@ return [
             'identityClass'   => 'models\User',
             'enableAutoLogin' => true,
             'identityCookie'  => ['name' => '_identity-backend', 'httpOnly' => true],
-            'loginUrl'        => ['login/index'],
+            'loginUrl'        => ['profile/login'],
         ],
         'session'      => [
             // this is the name of the session cookie used for login on the backend
@@ -77,6 +77,8 @@ return [
         'yandex_map_key' => 'e7c23b6e-ab16-4781-9848-d53df3f6da76',
         'logo' => '/images/logo.png',
         'sub_logo' => '/images/logo.png',
+        'complex' => true,
+        'city' => 'Набережные Челны',
         'social_networks' => [
             'vk' => 'http://vk.com',
             'facebook' => 'http://facebook.com',

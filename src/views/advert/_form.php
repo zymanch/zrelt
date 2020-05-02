@@ -8,23 +8,22 @@
 use models\Advert;
 use yii\widgets\ActiveForm;
 
-$this->registerCssFile('/css/jquery.fileupload.css', ['position' => \yii\web\View::POS_HEAD]);
-$this->registerCssFile('/css/jquery.fileupload-ui.css', ['position' => \yii\web\View::POS_HEAD]);
+$isUser = Yii::$app->user->identity->type === \models\User::TYPE_USER;
+//\assets\upload\Assets::register($this);
+\assets\editable\Assets::register($this);
+$this->registerJs('$("#advert-address_name").editableSelect({effects: "fade"});',\yii\web\View::POS_END);
 
-$this->registerJsFile('/js/vendor/jquery.ui.widget.js', ['position' => \yii\web\View::POS_END]);
-$this->registerJsFile('/js/jquery.iframe-transport.js', ['position' => \yii\web\View::POS_END]);
-$this->registerJsFile('/js/jquery.fileupload.js', ['position' => \yii\web\View::POS_END]);
-
-$this->registerJs('$("#advert-form").fileupload({
-    maxFileSize: 256*1024*1024,
-    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-    dataType: \'json\',
-        done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-                $(\'<p/>\').text(file.name).appendTo(document.body);
-            });
-        }
-});',\yii\web\View::POS_END);
+//$this->registerJs('$("#advert-form input[type=file]").fileupload({
+//    maxFileSize: 256*1024*1024,
+//    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+//    dataType: \'json\',
+//        done: function (e, data) {
+//            $.each(data.result.files, function (index, file) {
+//                $(\'<p/>\').text(file.name).appendTo(document.body);
+//            });
+//        }
+//});',\yii\web\View::POS_END);
+$addresses = \models\Address::getVariants();
 ?>
 <div class="form">
 <?php $form=ActiveForm::begin([
@@ -43,7 +42,7 @@ $this->registerJs('$("#advert-form").fileupload({
 
     <div class="row">
         <div class="col-md-6">
-            <?php echo $form->field($model,'address_id')->dropDownList(\models\Address::getVariants()); ?>
+            <?php echo $form->field($model,'address_name')->dropDownList(array_combine($addresses,$addresses)); ?>
         </div>
         <div class="col-md-3">
             <?php echo $form->field($model,'floor')->input('number'); ?>
@@ -80,7 +79,12 @@ $this->registerJs('$("#advert-form").fileupload({
             <?php echo $form->field($model,'price')->input('number'); ?>
         </div>
         <div class="col-md-3">
-            <?php echo $form->field($model,'seller_id')->dropDownList(\yii\helpers\ArrayHelper::map(\models\Seller::find()->all(),'id','name')); ?>
+            <?php echo $form
+                ->field($model,'seller_id')
+                ->dropDownList(
+                   \yii\helpers\ArrayHelper::map($isUser ? [Yii::$app->user->identity->seller] : \models\Seller::find()->all(),'id','name'),
+                   $isUser ? ['disabled'] : []
+                ); ?>
         </div>
         <div class="col-md-3">
             <?php echo $form->field($model,'source_id')->dropDownList(\yii\helpers\ArrayHelper::map(\models\Source::find()->all(),'id','name')); ?>

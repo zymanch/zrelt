@@ -40,7 +40,7 @@ class BaseAdvert extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'advert';
+        return 'zrelt.advert';
     }
 
     /**
@@ -49,7 +49,7 @@ class BaseAdvert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[BaseAdvertPeer::TYPE, BaseAdvertPeer::ADDRESS_ID, BaseAdvertPeer::INFORMATION, BaseAdvertPeer::PRICE, BaseAdvertPeer::SELLER_ID, BaseAdvertPeer::SOURCE_CODE, BaseAdvertPeer::SOURCE_ID, BaseAdvertPeer::URL, BaseAdvertPeer::EXPIRED], 'required'],
+            [[BaseAdvertPeer::TYPE, BaseAdvertPeer::ADDRESS_ID, BaseAdvertPeer::INFORMATION, BaseAdvertPeer::PRICE, BaseAdvertPeer::SELLER_ID, BaseAdvertPeer::SOURCE_ID], 'required'],
             [[BaseAdvertPeer::ADDRESS_ID, BaseAdvertPeer::FLOOR, BaseAdvertPeer::FLOOR_MAX, BaseAdvertPeer::SPACE_TOTAL, BaseAdvertPeer::SPACE_LIVING, BaseAdvertPeer::SPACE_COOKROOM, BaseAdvertPeer::BALCONY, BaseAdvertPeer::PRICE, BaseAdvertPeer::SELLER_ID, BaseAdvertPeer::SOURCE_ID, BaseAdvertPeer::EXPIRED], 'integer'],
             [[BaseAdvertPeer::PHONE, BaseAdvertPeer::STEEL_DOOR, BaseAdvertPeer::INFORMATION, BaseAdvertPeer::EXCHANGE, BaseAdvertPeer::STATUS], 'string'],
             [[BaseAdvertPeer::CREATED, BaseAdvertPeer::CHANGED], 'safe'],

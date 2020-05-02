@@ -22,7 +22,7 @@ class BaseSellerPhone extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'seller_phone';
+        return 'zrelt.seller_phone';
     }
 
     /**

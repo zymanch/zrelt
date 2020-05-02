@@ -2,6 +2,7 @@
 namespace models;
 
 use models\base;
+use behaviours\AddCoordinatesBehavior;
 
 class Address extends base\BaseAddress {
 
@@ -16,12 +17,23 @@ class Address extends base\BaseAddress {
         return implode('/',$result);
     }
 
+    public function getHumanStreet() {
+        $result = [];
+        $result[] = $this->street;
+        if ($this->street_house) {
+            $result[] = 'д. '.$this->street_house;
+        }
+        if ($this->street_structure) {
+            $result[] = 'стр. '.$this->street_structure;
+        }
+        return $result;
+    }
 
     public static function getVariants()
     {
         $result = [];
         foreach (self::find()->all() as $model) {
-            $result[$model->id] = $model->getHumanComplex();
+            $result[$model->id] = (string)$model;
         }
         asort($result, SORT_NUMERIC );
         return $result;
@@ -93,19 +105,18 @@ class Address extends base\BaseAddress {
 
 
     public function behaviors() {
-        return [];
         return array(
-            'addGoogleCoordinates' => array(
-                'class' => 'AddGoogleCoordinatesBehavior'
+            'addCoordinates' => array(
+                'class' => AddCoordinatesBehavior::class
             ),
         );
     }
 
     public function __toString() {
-        if ($this->complex) {
-            return 'Комплекс '.$this->getHumanComplex();
+        if (\Yii::$app->params['complex']) {
+            return $this->getHumanComplex();
         } else {
-            return '';
+            return $this->getHumanStreet();
         }
     }
 }

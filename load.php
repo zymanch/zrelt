@@ -16,6 +16,8 @@ require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
 // Initialize aliases
 Yii::setAlias('@web', __DIR__.'/public');
+Yii::setAlias('@assets', __DIR__.'/src/assets');
+Yii::setAlias('@behaviours', __DIR__.'/src/behaviours');
 Yii::setAlias('@commands', __DIR__ . '/src/commands');
 Yii::setAlias('@components', __DIR__ . '/src/components');
 Yii::setAlias('@controllers', __DIR__ . '/src/controllers');

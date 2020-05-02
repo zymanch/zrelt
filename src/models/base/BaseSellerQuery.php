@@ -24,6 +24,8 @@ use models\SellerQuery;
   * @method SellerQuery joinWithAdverts($params = null, $joinType = 'LEFT JOIN')
   * @method SellerQuery withSellerPhones($params = [])
   * @method SellerQuery joinWithSellerPhones($params = null, $joinType = 'LEFT JOIN')
+  * @method SellerQuery withUsers($params = [])
+  * @method SellerQuery joinWithUsers($params = null, $joinType = 'LEFT JOIN')
  */
 class BaseSellerQuery extends \yii\db\ActiveQuery
 {

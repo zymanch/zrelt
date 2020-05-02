@@ -22226,4 +22226,3 @@ Stack trace:
 #8 {main}
 ---
 2017/12/11 14:41:45 [warning] [curl log] http://dom.mingkh.ru/api/houses
-2020/01/26 13:46:28 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zrelt.tbl_migration' doesn't exist. Выполнявшийся SQL-запрос: SHOW FULL COLUMNS FROM `tbl_migration`.

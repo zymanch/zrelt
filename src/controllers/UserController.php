@@ -40,13 +40,14 @@ class UserController extends \components\Controller
 		$model=new \models\User;
 		$model->scenario = \models\User::SCENARIO_CREATE;
         $model->type = User::TYPE_MANAGER;
+        $model->auth_key = md5(rand(0,time()).rand(0,time()).__CLASS__);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if($model->load(\Yii::$app->request->post()) && $model->validate()) {
 		    $model->auth_key = $model->generateAuthKey();
 			if($model->save()) {
-                $model->setPassword($model->password);
+                $model->setPassword($model->password)->save(false);
                 \Yii::$app->session->setFlash('success','Аккаунт успешно создан');
                 return $this->redirect(array('update', 'id' => $model->id));
             }
