@@ -32,10 +32,21 @@ class DownloadCommand extends CConsoleCommand {
         for ($page=0;$page < $count;$page++) {
             $adverts = $pagination->obtainAdverts($page);
             foreach ($adverts as $advert) {
-                $ids = $advert->save();
-                $actualIds = array_merge($actualIds, $ids);
+                try {
+                    $ids = $advert->save();
+                    $actualIds = array_merge($actualIds, $ids);
+                    printf(
+                        "\rParsed %d%% pages (%d averts)",
+                        round(100 * $page / ($count > 1 ? $count - 1 : 1)),
+                        sizeof($actualIds)
+                    );
+                } catch (Exception $e) {
+                    printf(
+                        "\rSkipped because error:%s",
+                        $e->getMessage()
+                    );
+                }
             }
-            printf("\rParsed %d%%",round(100 * $page /($count > 1 ? $count-1 : 1)));
         }
         return $actualIds;
     }

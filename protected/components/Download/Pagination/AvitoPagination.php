@@ -59,7 +59,7 @@ class AvitoPagination extends DownloadPagination {
         return $this->_pages;
     }
 
-    function getPagesCount() {
+    public function getPagesCount() {
         return sizeof($this->_pages);
     }
 }
