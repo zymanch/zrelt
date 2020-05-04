@@ -1,6 +1,7 @@
 {
   "config": {
-    "salt_for_intranet": "salt"
+    "salt_for_intranet": "salt",
+    "yandex_key":"e7c23b6e-ab16-4781-9848-d53df3f6da76"
   },
   "mysql": {
     "hostname": "localhost",

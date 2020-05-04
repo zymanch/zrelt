@@ -74,7 +74,7 @@ return [
         'email'=>'sasha@zrelt.com',
         'phone'=>'+79274162066',
         'skype'=>'virt360',
-        'yandex_map_key' => 'e7c23b6e-ab16-4781-9848-d53df3f6da76',
+        'yandex_map_key' => $secure['config']['yandex_key'],
         'logo' => '/images/logo.png',
         'sub_logo' => '/images/logo.png',
         'complex' => true,

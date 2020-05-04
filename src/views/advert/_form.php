@@ -11,7 +11,15 @@ use yii\widgets\ActiveForm;
 $isUser = Yii::$app->user->identity->type === \models\User::TYPE_USER;
 //\assets\upload\Assets::register($this);
 \assets\editable\Assets::register($this);
-$this->registerJs('$("#advert-address_name").editableSelect({effects: "fade"});',\yii\web\View::POS_END);
+$this->registerJs('$("#advert-address_name").autocomplete({
+    source: function (request, response) {
+        jQuery.get("'.\yii\helpers\Url::to(['address/autocomplete']).'", {
+            term: request.term
+        }, function (data) {
+            response(data.items);
+        });
+    }
+});',\yii\web\View::POS_END);
 
 //$this->registerJs('$("#advert-form input[type=file]").fileupload({
 //    maxFileSize: 256*1024*1024,
@@ -42,7 +50,7 @@ $addresses = \models\Address::getVariants();
 
     <div class="row">
         <div class="col-md-6">
-            <?php echo $form->field($model,'address_name')->dropDownList(array_combine($addresses,$addresses)); ?>
+            <?php echo $form->field($model,'address_name')->textInput(); ?>
         </div>
         <div class="col-md-3">
             <?php echo $form->field($model,'floor')->input('number'); ?>
