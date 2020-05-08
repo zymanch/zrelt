@@ -8,7 +8,7 @@ use models\Advert;
 ?>
 <div class="col-md-4 col-sm-4 col-xs-12">
     <div class="single-effect">
-        <div class="wpf-property"> <a href="#"><img src="https://static-maps.yandex.ru/1.x/?ll=<?=$model->address->map_y;?>,<?=$model->address->map_x;?>&size=370,300&z=15&l=map&pt=<?=$model->address->map_y;?>,<?=$model->address->map_x;?>,comma" alt="image" class="img-responsive"></a>
+        <div class="wpf-property"> <a href="#"><img src="https://static-maps.yandex.ru/1.x/?ll=<?=$model->address->map_y;?>,<?=$model->address->map_x;?>&size=<?=\models\Image::THUMB_WIDTH;?>,<?=\models\Image::THUMB_HEIGHT;?>&z=15&l=map&pt=<?=$model->address->map_y;?>,<?=$model->address->map_x;?>,comma" alt="image" class="img-responsive"></a>
             <div class="view-caption">
                 <div class="property-box">
                     <div class="box-heading">

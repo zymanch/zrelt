@@ -54,6 +54,8 @@ use models\AdvertQuery;
   * @method AdvertQuery joinWithAddress($params = null, $joinType = 'LEFT JOIN')
   * @method AdvertQuery withSeller($params = [])
   * @method AdvertQuery joinWithSeller($params = null, $joinType = 'LEFT JOIN')
+  * @method AdvertQuery withImages($params = [])
+  * @method AdvertQuery joinWithImages($params = null, $joinType = 'LEFT JOIN')
  */
 class BaseAdvertQuery extends \yii\db\ActiveQuery
 {

@@ -30,6 +30,7 @@ class ArController extends Controller
                     'seller_phone',
                     'source',
                     'user',
+                    'image'
                 ]);
         }
         $helper = new \ActiveGenerator\generator\ScriptHelper();

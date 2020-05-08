@@ -32,6 +32,7 @@ namespace models\base;
  *
  * @property \models\Address $address
  * @property \models\Seller $seller
+ * @property \models\Image[] $images
  */
 class BaseAdvert extends \yii\db\ActiveRecord
 {
@@ -102,6 +103,12 @@ class BaseAdvert extends \yii\db\ActiveRecord
      */
     public function getSeller() {
         return $this->hasOne(\models\Seller::className(), [BaseSellerPeer::ID => BaseAdvertPeer::SELLER_ID]);
+    }
+        /**
+     * @return \models\ImageQuery
+     */
+    public function getImages() {
+        return $this->hasMany(\models\Image::className(), [BaseImagePeer::ADVERT_ID => BaseAdvertPeer::ID]);
     }
     
     /**
