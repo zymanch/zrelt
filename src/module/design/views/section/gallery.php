@@ -15,7 +15,7 @@ $context = $this->context;
         <?php foreach ($context->getGroupedItems() as $group):?>
             <div class="grid-item<?php if ($group['type'] == \module\design\section\Gallery::TYPE_HALF):?> grid-item-half<?php endif;?>">
                 <?php foreach ($group['items'] as $item):?>
-                <a href="<?=\yii\helpers\Url::to($item['url']);?>"><img src="<?=$this->context->getImageUrl($item['image']);?>" alt="">
+                <a href="<?=\yii\helpers\Url::to($item['url']);?>"><img src="<?=$item['image'];?>" alt="">
                     <div class="overlay"></div>
                 </a>
                 <?php endforeach;?>

@@ -2,6 +2,7 @@
 /**
  * @var Advert $model
  * @var ActiveForm $form
+ * @var \components\ImageUploader $uploader
  * @var $this \yii\web\View
  */
 
@@ -32,14 +33,16 @@ $this->registerJs('$("#advert-address_name").autocomplete({
 //        }
 //});',\yii\web\View::POS_END);
 $addresses = \models\Address::getVariants();
+$maxFileSize = $uploader->fileUploadMaxSize();
 ?>
 <div class="form">
 <?php $form=ActiveForm::begin([
 	'id'=>'advert-form',
+	'method'=>'post',
 	'enableAjaxValidation'=>false,
     'options' => ['enctype'=>'multipart/form-data']
 ]); ?>
-
+    <?=\yii\helpers\Html::hiddenInput('MAX_FILE_SIZE',$maxFileSize);?>
 	<?php echo $form->errorSummary($model); ?>
 
     <div class="row">
@@ -105,7 +108,7 @@ $addresses = \models\Address::getVariants();
     <div class="row">
         <div class="col-xs-12">
             <label>Фотографии</label>
-            <input type="file" name="files[]" multiple />
+            <?=$form->field($uploader,'files[]')->fileInput(['multiple' => true, 'accept' => 'image/*'])->label(false);?>
             <div id="progress">
                 <div class="bar" style="width: 0%;"></div>
             </div>

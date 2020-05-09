@@ -1,5 +1,6 @@
 <?php
 namespace controllers;
+use components\ImageUploader;
 use models\AddressQuery;
 use models\Advert;
 use models\search\SearchAdvert;
@@ -7,6 +8,7 @@ use models\User;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 class AdvertController extends \components\Controller
 {
@@ -115,6 +117,7 @@ class AdvertController extends \components\Controller
         if ($user->seller_id) {
             $model->seller_id = $user->seller_id;
         }
+        $uploader = new ImageUploader($model);
 		if($model->load($_POST)) {
 			$address = AddressQuery::model()->findOrCreate($model->address_name);
 			$model->address_id = $address?$address->id : null;
@@ -129,6 +132,7 @@ class AdvertController extends \components\Controller
 
         return $this->render('create',array(
 			'model'=>$model,
+            'uploader' => $uploader
 		));
 	}
 
@@ -147,6 +151,7 @@ class AdvertController extends \components\Controller
             throw new ForbiddenHttpException();
         }
         $model->address_name = (string)$model->address;
+        $uploader = new ImageUploader($model);
 		if($model->load($_POST)) {
             $address = AddressQuery::model()->findOrCreate($model->address_name);
             $model->address_id = $address?$address->id : null;
@@ -154,13 +159,20 @@ class AdvertController extends \components\Controller
                 $model->seller_id = $user->seller_id;
             }
 			if($model->save()) {
-                \Yii::$app->session->setFlash('success','Объявление успешно сохранено');
+                $uploader->files = UploadedFile::getInstances($uploader, 'files');
+                if ($uploader->upload()) {
+                    \Yii::$app->session->setFlash('success','Объявление успешно сохранено');
+                } else {
+                    \Yii::$app->session->setFlash('error','Ошибка загрузки файлов');
+                }
+
                 $this->redirect(array('view', 'id' => $model->id));
             }
 		}
 
         return $this->render('update',array(
 			'model'=>$model,
+            'uploader' => $uploader
 		));
 	}
 

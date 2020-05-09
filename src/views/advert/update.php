@@ -18,7 +18,7 @@ use yii\helpers\Html;
                     <?php endif;?></h2>
             </h1>
 
-        <?php echo $this->render('_form',array('model'=>$model)); ?>
+        <?php echo $this->render('_form',array('model'=>$model,'uploader'=>$uploader)); ?>
         </div>
     </div>
 </section>

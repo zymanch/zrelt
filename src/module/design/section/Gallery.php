@@ -32,7 +32,6 @@ class Gallery extends \module\design\Section {
 
     public function getGroupedItems()
     {
-
         if (!$this->items) {
             return [];
         }
