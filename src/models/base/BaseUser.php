@@ -5,7 +5,7 @@ namespace models\base;
 
 
 /**
- * This is the model class for table "zrelt.user".
+ * This is the model class for table "user".
  *
  * @property integer $id
  * @property integer $seller_id
@@ -27,7 +27,7 @@ class BaseUser extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'zrelt.user';
+        return 'user';
     }
 
     /**

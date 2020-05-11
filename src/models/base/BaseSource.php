@@ -5,7 +5,7 @@ namespace models\base;
 
 
 /**
- * This is the model class for table "zrelt.source".
+ * This is the model class for table "source".
  *
  * @property integer $id
  * @property string $name
@@ -21,7 +21,7 @@ class BaseSource extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'zrelt.source';
+        return 'source';
     }
 
     /**

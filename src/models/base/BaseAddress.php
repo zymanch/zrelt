@@ -5,7 +5,7 @@ namespace models\base;
 
 
 /**
- * This is the model class for table "zrelt.address".
+ * This is the model class for table "address".
  *
  * @property integer $id
  * @property integer $complex
@@ -29,7 +29,7 @@ class BaseAddress extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'zrelt.address';
+        return 'address';
     }
 
     /**

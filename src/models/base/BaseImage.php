@@ -5,7 +5,7 @@ namespace models\base;
 
 
 /**
- * This is the model class for table "zrelt.image".
+ * This is the model class for table "image".
  *
  * @property integer $id
  * @property integer $advert_id
@@ -24,7 +24,7 @@ class BaseImage extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'zrelt.image';
+        return 'image';
     }
 
     /**

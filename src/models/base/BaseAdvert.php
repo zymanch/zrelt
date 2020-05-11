@@ -5,7 +5,7 @@ namespace models\base;
 
 
 /**
- * This is the model class for table "zrelt.advert".
+ * This is the model class for table "advert".
  *
  * @property integer $id
  * @property string $type
@@ -41,7 +41,7 @@ class BaseAdvert extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'zrelt.advert';
+        return 'advert';
     }
 
     /**
