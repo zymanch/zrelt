@@ -15,7 +15,7 @@ use yii\helpers\Html;
                     <?php endif;?>
                     <?php if ($model->address->complex_structure):?>
                         / <?php echo Html::encode($model->address->complex_structure);?>
-                    <?php endif;?></h2>
+                    <?php endif;?>
             </h1>
 
         <?php echo $this->render('_form',array('model'=>$model,'uploader'=>$uploader)); ?>

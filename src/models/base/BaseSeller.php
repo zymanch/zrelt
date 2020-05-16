@@ -8,6 +8,7 @@ namespace models\base;
  * This is the model class for table "seller".
  *
  * @property integer $id
+ * @property integer $user_id
  * @property string $type
  * @property string $name
  * @property string $info
@@ -16,8 +17,8 @@ namespace models\base;
  * @property string $changed
  *
  * @property \models\Advert[] $adverts
+ * @property \models\User $user
  * @property \models\SellerPhone[] $sellerPhones
- * @property \models\User[] $users
  */
 class BaseSeller extends \yii\db\ActiveRecord
 {
@@ -35,11 +36,13 @@ class BaseSeller extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [[BaseSellerPeer::USER_ID], 'integer'],
             [[BaseSellerPeer::TYPE, BaseSellerPeer::NAME, BaseSellerPeer::INFO, BaseSellerPeer::SITE], 'required'],
             [[BaseSellerPeer::INFO, BaseSellerPeer::STATUS], 'string'],
             [[BaseSellerPeer::CHANGED], 'safe'],
             [[BaseSellerPeer::TYPE], 'string', 'max' => 6],
             [[BaseSellerPeer::NAME, BaseSellerPeer::SITE], 'string', 'max' => 128],
+            [[BaseSellerPeer::USER_ID], 'exist', 'skipOnError' => true, 'targetClass' => BaseUser::className(), 'targetAttribute' => [BaseSellerPeer::USER_ID => BaseUserPeer::ID]],
         ];
     }
 
@@ -50,6 +53,7 @@ class BaseSeller extends \yii\db\ActiveRecord
     {
         return [
             BaseSellerPeer::ID => 'ID',
+            BaseSellerPeer::USER_ID => 'User ID',
             BaseSellerPeer::TYPE => 'Type',
             BaseSellerPeer::NAME => 'Name',
             BaseSellerPeer::INFO => 'Info',
@@ -65,16 +69,16 @@ class BaseSeller extends \yii\db\ActiveRecord
         return $this->hasMany(\models\Advert::className(), [BaseAdvertPeer::SELLER_ID => BaseSellerPeer::ID]);
     }
         /**
+     * @return \models\UserQuery
+     */
+    public function getUser() {
+        return $this->hasOne(\models\User::className(), [BaseUserPeer::ID => BaseSellerPeer::USER_ID]);
+    }
+        /**
      * @return \models\SellerPhoneQuery
      */
     public function getSellerPhones() {
         return $this->hasMany(\models\SellerPhone::className(), [BaseSellerPhonePeer::SELLER_ID => BaseSellerPeer::ID]);
-    }
-        /**
-     * @return \models\UserQuery
-     */
-    public function getUsers() {
-        return $this->hasMany(\models\User::className(), [BaseUserPeer::SELLER_ID => BaseSellerPeer::ID]);
     }
     
     /**

@@ -9,6 +9,7 @@ class BaseImagePeer  {
     const TYPE = "type";
     const WIDTH = "width";
     const HEIGHT = "height";
+    const NAME = "name";
     const FILENAME = "filename";
     const CREATED = "created";
 

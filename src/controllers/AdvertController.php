@@ -3,6 +3,7 @@ namespace controllers;
 use components\ImageUploader;
 use models\AddressQuery;
 use models\Advert;
+use models\ImageLink;
 use models\search\SearchAdvert;
 use models\User;
 use yii\filters\AccessControl;
@@ -20,9 +21,10 @@ class AdvertController extends \components\Controller
     const PERMISSION_INDEX = \components\AuthManager::GUEST;
     const PERMISSION_MAP = \components\AuthManager::GUEST;
     const PERMISSION_UPDATE = \components\AuthManager::USER;
-    const PERMISSION_ADMIN = \components\AuthManager::MANAGER;
+    const PERMISSION_UPDATE_PANORAMA = \components\AuthManager::USER;
     const PERMISSION_DELETE = \components\AuthManager::USER;
     const PERMISSION_CREATE = \components\AuthManager::USER;
+    const PERMISSION_MY = \components\AuthManager::USER;
 
 
     public function init()
@@ -44,6 +46,9 @@ class AdvertController extends \components\Controller
         if ($user->can(AdvertController::PERMISSION_UPDATE, $id)) {
             $this->menu['advert']['items'][] = ['label'=>'Редактировать', 'url'=>['advert/update','id'=>$id]];
         }
+        if ($user->can(AdvertController::PERMISSION_UPDATE_PANORAMA, $id)) {
+            $this->menu['advert']['items'][] = ['label'=>'Панорама', 'url'=>['advert/update-panorama','id'=>$id]];
+        }
         if ($user->can(AdvertController::PERMISSION_DELETE, $id)) {
             $this->menu['advert']['items'][] = ['label'=>'Удалить', 'url'=>['advert/delete','id'=>$id]];
         }
@@ -59,8 +64,9 @@ class AdvertController extends \components\Controller
                     ['allow'=>true,'actions'=>['map'],'roles'=>[self::PERMISSION_MAP]],
                     ['allow'=>true,'actions'=>['create'],'roles'=>[self::PERMISSION_CREATE]],
                     ['allow'=>true,'actions'=>['update'],'roles'=>[self::PERMISSION_UPDATE]],
-                    ['allow'=>true,'actions'=>['admin'],'roles'=>[self::PERMISSION_ADMIN]],
+                    ['allow'=>true,'actions'=>['update-panorama'],'roles'=>[self::PERMISSION_UPDATE_PANORAMA]],
                     ['allow'=>true,'actions'=>['delete'],'roles'=>[self::PERMISSION_DELETE]],
+                    ['allow'=>true,'actions'=>['my'],'roles'=>[self::PERMISSION_MY]],
                 ],
             ],
         ];
@@ -78,6 +84,23 @@ class AdvertController extends \components\Controller
             $advert->refresh();
         }
         return $this->render('index',array(
+            'model' => $advert,
+        ));
+    }
+
+
+    /**
+     * Lists all models.
+     */
+    public function actionMy()
+    {
+        $advert = new SearchAdvert();
+        $advert->setAttributes($_GET);
+        $advert->user_id = \Yii::$app->user->id;
+        if (!$advert->validate() ) {
+            $advert->refresh();
+        }
+        return $this->render('my',array(
             'model' => $advert,
         ));
     }
@@ -105,6 +128,7 @@ class AdvertController extends \components\Controller
 		));
 	}
 
+
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -114,15 +138,13 @@ class AdvertController extends \components\Controller
 	    /** @var User $user */
 	    $user = \Yii::$app->user->identity;
 		$model=new Advert;
-        if ($user->seller_id) {
-            $model->seller_id = $user->seller_id;
-        }
+        $model->seller_id = reset($user->sellers)->id;
         $uploader = new ImageUploader($model);
 		if($model->load($_POST)) {
 			$address = AddressQuery::model()->findOrCreate($model->address_name);
 			$model->address_id = $address?$address->id : null;
             if ($user->type === User::TYPE_USER) {
-                $model->seller_id = $user->seller_id;
+                $model->seller_id = reset($user->sellers)->id;
             }
 			if($model->save()) {
                 \Yii::$app->session->setFlash('success','Объявление успешно создано');
@@ -147,7 +169,7 @@ class AdvertController extends \components\Controller
         /** @var User $user */
         $user = \Yii::$app->user->identity;
 		$model=$this->loadModel($id);
-        if ($user->type === User::TYPE_USER && $model->seller_id!==$user->seller_id) {
+        if (!$model->canEdit()) {
             throw new ForbiddenHttpException();
         }
         $model->address_name = (string)$model->address;
@@ -156,7 +178,7 @@ class AdvertController extends \components\Controller
             $address = AddressQuery::model()->findOrCreate($model->address_name);
             $model->address_id = $address?$address->id : null;
             if ($user->type === User::TYPE_USER) {
-                $model->seller_id = $user->seller_id;
+                $model->seller_id = reset($user->sellers)->id;
             }
 			if($model->save()) {
                 $uploader->files = UploadedFile::getInstances($uploader, 'files');
@@ -165,8 +187,12 @@ class AdvertController extends \components\Controller
                 } else {
                     \Yii::$app->session->setFlash('error','Ошибка загрузки файлов');
                 }
+                if ($uploader->files && $model->hasPanorama()) {
+                    $this->redirect(array('update-panorama', 'id' => $model->id));
+                } else {
+                    $this->redirect(array('view', 'id' => $model->id));
+                }
 
-                $this->redirect(array('view', 'id' => $model->id));
             }
 		}
 
@@ -174,6 +200,58 @@ class AdvertController extends \components\Controller
 			'model'=>$model,
             'uploader' => $uploader
 		));
+	}
+
+    public function actionUpdatePanorama($id)
+    {
+        /** @var User $user */
+        $user = \Yii::$app->user->identity;
+        $model=$this->loadModel($id);
+        if (!$model->canEdit()) {
+            throw new ForbiddenHttpException();
+        }
+        if (\Yii::$app->request->isPost) {
+            $transaction = \Yii::$app->db->beginTransaction();
+            //print '<pre>'; var_dump($_POST);die();
+            try {
+                $imageData = \Yii::$app->request->post('Image',[]);
+                $linkData = \Yii::$app->request->post('ImageLink',[]);
+                foreach ($model->getPanoramas() as $image) {
+                    // сохранение имени
+                    $image->setAttributes($imageData[$image->id]);
+                    if (!$image->save()) {
+                        throw new \Exception('Неверное имя панорамы');
+                    }
+                    // сохранение ссылок
+                    foreach ($image->imageLinks as $link) {
+                        $link->delete();
+                    }
+                    foreach ($linkData[$image->id] as $data) {
+                        if (!$data['to_image_id']) {
+                            continue;
+                        }
+                        $link = new ImageLink();
+                        $link->setAttributes($data);
+                        $link->from_image_id =$image->id;
+                        if (!$link->save()) {
+                            throw new \Exception('Ошибка сохранение ссылки: '.json_encode($link->getErrors()));
+                        }
+                    }
+                }
+
+                $transaction->commit();
+                return $this->redirect(['panorama/view','id'=>$model->id]);
+            } catch (\Exception $e) {
+                var_dump($e);die();
+                $transaction->rollBack();
+            }
+
+        }
+
+
+        return $this->render('update-panorama',array(
+            'model'=>$model,
+        ));
 	}
 
 	/**
@@ -198,21 +276,6 @@ class AdvertController extends \components\Controller
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
-
-	/**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new SearchAdvert();
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Advert']))
-			$model->attributes=$_GET['Advert'];
-
-        return $this->render('admin',array(
-			'model'=>$model,
-		));
-	}
 
     /**
      * @param integer the ID of the model to be loaded

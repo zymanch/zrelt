@@ -11,6 +11,7 @@ use models\ImageQuery;
  * @method ImageQuery filterByType($value, $criteria = null)
  * @method ImageQuery filterByWidth($value, $criteria = null)
  * @method ImageQuery filterByHeight($value, $criteria = null)
+ * @method ImageQuery filterByName($value, $criteria = null)
  * @method ImageQuery filterByFilename($value, $criteria = null)
  * @method ImageQuery filterByCreated($value, $criteria = null)
   * @method ImageQuery orderById($order = Criteria::ASC)
@@ -18,10 +19,15 @@ use models\ImageQuery;
   * @method ImageQuery orderByType($order = Criteria::ASC)
   * @method ImageQuery orderByWidth($order = Criteria::ASC)
   * @method ImageQuery orderByHeight($order = Criteria::ASC)
+  * @method ImageQuery orderByName($order = Criteria::ASC)
   * @method ImageQuery orderByFilename($order = Criteria::ASC)
   * @method ImageQuery orderByCreated($order = Criteria::ASC)
   * @method ImageQuery withAdvert($params = [])
   * @method ImageQuery joinWithAdvert($params = null, $joinType = 'LEFT JOIN')
+  * @method ImageQuery withImageLinks($params = [])
+  * @method ImageQuery joinWithImageLinks($params = null, $joinType = 'LEFT JOIN')
+  * @method ImageQuery withImageLinks0($params = [])
+  * @method ImageQuery joinWithImageLinks0($params = null, $joinType = 'LEFT JOIN')
  */
 class BaseImageQuery extends \yii\db\ActiveQuery
 {

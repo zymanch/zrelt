@@ -75,6 +75,9 @@ h2 {
 .white {
 	color:#fff;
 }
+.white a, .white a:visited, .white a:hover {
+  color:#fff !important;
+}
 .blue {
 	color:#02b2e1;
 	font-weight:normal !important;

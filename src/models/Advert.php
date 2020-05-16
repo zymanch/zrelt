@@ -1,6 +1,7 @@
 <?php
 namespace models;
 
+use controllers\AdvertController;
 use models\base;
 
 class Advert extends base\BaseAdvert {
@@ -21,6 +22,39 @@ class Advert extends base\BaseAdvert {
         ]);
     }
 
+    public function canEdit($userId = null)
+    {
+        if (!$userId) {
+            $userId = \Yii::$app->user->id;
+        }
+        if ($this->seller->user_id==$userId) {
+            return true;
+        }
+        return \Yii::$app->authManager->checkAccess($userId, AdvertController::PERMISSION_UPDATE, $this->id);
+    }
+
+    public function getBgImage()
+    {
+        foreach ($this->images as $image) {
+            if ($image->type === Image::TYPE_PANORAMA) {
+                return $image->getPanoramaUrl();
+            }
+        }
+        foreach ($this->images as $image) {
+            return $image->getFullImageUrl();
+        }
+        return '/images/scribble_light.png';
+    }
+
+    public function hasPanorama()
+    {
+        foreach ($this->images as $image) {
+            if ($image->type === Image::TYPE_PANORAMA) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public function getTypeLabel() {
         $variants = self::getVariants();
@@ -83,6 +117,23 @@ class Advert extends base\BaseAdvert {
             return 'есть';
         }
         return 'нет';
+    }
+
+
+    /**
+     * @return Image[]
+     */
+    public function getPanoramas()
+    {
+        $images = [];
+        foreach ($this->images as $image) {
+            if ($image->type !== Image::TYPE_PANORAMA) {
+                continue;
+            }
+            $images[$image->id] = $image;
+        }
+        return $images;
+
     }
 
     public static function getVariants() {

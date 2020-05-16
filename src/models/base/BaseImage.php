@@ -12,10 +12,13 @@ namespace models\base;
  * @property string $type
  * @property integer $width
  * @property integer $height
+ * @property string $name
  * @property string $filename
  * @property string $created
  *
  * @property \models\Advert $advert
+ * @property \models\ImageLink[] $imageLinks
+ * @property \models\ImageLink[] $imageLinks0
  */
 class BaseImage extends \yii\db\ActiveRecord
 {
@@ -37,7 +40,7 @@ class BaseImage extends \yii\db\ActiveRecord
             [[BaseImagePeer::ADVERT_ID, BaseImagePeer::WIDTH, BaseImagePeer::HEIGHT], 'integer'],
             [[BaseImagePeer::TYPE], 'string'],
             [[BaseImagePeer::CREATED], 'safe'],
-            [[BaseImagePeer::FILENAME], 'string', 'max' => 128],
+            [[BaseImagePeer::NAME, BaseImagePeer::FILENAME], 'string', 'max' => 128],
             [[BaseImagePeer::ADVERT_ID], 'exist', 'skipOnError' => true, 'targetClass' => BaseAdvert::className(), 'targetAttribute' => [BaseImagePeer::ADVERT_ID => BaseAdvertPeer::ID]],
         ];
     }
@@ -53,6 +56,7 @@ class BaseImage extends \yii\db\ActiveRecord
             BaseImagePeer::TYPE => 'Type',
             BaseImagePeer::WIDTH => 'Width',
             BaseImagePeer::HEIGHT => 'Height',
+            BaseImagePeer::NAME => 'Name',
             BaseImagePeer::FILENAME => 'Filename',
             BaseImagePeer::CREATED => 'Created',
         ];
@@ -62,6 +66,18 @@ class BaseImage extends \yii\db\ActiveRecord
      */
     public function getAdvert() {
         return $this->hasOne(\models\Advert::className(), [BaseAdvertPeer::ID => BaseImagePeer::ADVERT_ID]);
+    }
+        /**
+     * @return \models\ImageLinkQuery
+     */
+    public function getImageLinks() {
+        return $this->hasMany(\models\ImageLink::className(), [BaseImageLinkPeer::FROM_IMAGE_ID => BaseImagePeer::ID]);
+    }
+        /**
+     * @return \models\ImageLinkQuery
+     */
+    public function getImageLinks0() {
+        return $this->hasMany(\models\ImageLink::className(), [BaseImageLinkPeer::TO_IMAGE_ID => BaseImagePeer::ID]);
     }
     
     /**

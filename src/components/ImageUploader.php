@@ -83,8 +83,23 @@ class ImageUploader extends Model{
         $image->height = $height;
         $image->type = $width > $height * self::PANORAMA_ASPECT_RATION ? Image::TYPE_PANORAMA : Image::TYPE_IMAGE;
         $image->filename = basename($basePath);
+        $image->name = $this->_getImageName($image);
         $image->save();
         return $image;
+    }
+
+    private function _getImageName(Image $image)
+    {
+        $pattern = $image->type == Image::TYPE_PANORAMA ? 'Комната ' : 'Фото ';
+        $index = 0;
+        do {
+            $index++;
+            $imageExists = Image::find()
+                    ->filterByAdvertId($image->advert_id)
+                    ->filterByName($pattern . $index)
+                    ->count() > 0;
+        } while ($imageExists);
+        return $pattern . $index;
     }
 
     private function _createThumbnail(Image $image)

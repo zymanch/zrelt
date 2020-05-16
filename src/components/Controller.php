@@ -11,6 +11,8 @@ class Controller extends \module\design\Controller
     public $layout = self::LAYOUT_DEFAULT_MENU;
 	public $menu=array();
 	public $sub_menu=array();
+
+	public $button = ['label'=>'Мои объявления','url'=>['advert/my']];
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
@@ -31,7 +33,6 @@ class Controller extends \module\design\Controller
     {
 
         $this->menu = array(
-            array('label'=>'Главная', 'url'=>'/'),
             array('label'=>'Карта', 'url'=>array('advert/map')),
             array('label'=>'Поиск', 'url'=>array('advert/index')),
         );
@@ -55,10 +56,6 @@ class Controller extends \module\design\Controller
     private function _initAdvertMenu()
     {
         $user = \Yii::$app->user;
-        $items = [];
-        if ($user->can(AdvertController::PERMISSION_ADMIN)) {
-            $items[] = ['label'=>'Администрирование', 'url'=>['advert/admin']];
-        }
         if ($user->can(AdvertController::PERMISSION_CREATE)) {
             $items[] = ['label'=>'Создать', 'url'=>['advert/create']];
         }

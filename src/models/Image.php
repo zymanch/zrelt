@@ -77,4 +77,5 @@ class Image extends base\BaseImage {
         return '/'.self::IMAGE_DIR.'/'.$this->advert_id.'/_'.$this->id.'_panorama.jpg';
     }
 
+
 }

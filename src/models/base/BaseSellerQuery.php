@@ -7,6 +7,7 @@ use models\SellerQuery;
 /**
  * This is the ActiveQuery class for [[models\Seller]].
  * @method SellerQuery filterById($value, $criteria = null)
+ * @method SellerQuery filterByUserId($value, $criteria = null)
  * @method SellerQuery filterByType($value, $criteria = null)
  * @method SellerQuery filterByName($value, $criteria = null)
  * @method SellerQuery filterByInfo($value, $criteria = null)
@@ -14,6 +15,7 @@ use models\SellerQuery;
  * @method SellerQuery filterByStatus($value, $criteria = null)
  * @method SellerQuery filterByChanged($value, $criteria = null)
   * @method SellerQuery orderById($order = Criteria::ASC)
+  * @method SellerQuery orderByUserId($order = Criteria::ASC)
   * @method SellerQuery orderByType($order = Criteria::ASC)
   * @method SellerQuery orderByName($order = Criteria::ASC)
   * @method SellerQuery orderByInfo($order = Criteria::ASC)
@@ -22,10 +24,10 @@ use models\SellerQuery;
   * @method SellerQuery orderByChanged($order = Criteria::ASC)
   * @method SellerQuery withAdverts($params = [])
   * @method SellerQuery joinWithAdverts($params = null, $joinType = 'LEFT JOIN')
+  * @method SellerQuery withUser($params = [])
+  * @method SellerQuery joinWithUser($params = null, $joinType = 'LEFT JOIN')
   * @method SellerQuery withSellerPhones($params = [])
   * @method SellerQuery joinWithSellerPhones($params = null, $joinType = 'LEFT JOIN')
-  * @method SellerQuery withUsers($params = [])
-  * @method SellerQuery joinWithUsers($params = null, $joinType = 'LEFT JOIN')
  */
 class BaseSellerQuery extends \yii\db\ActiveQuery
 {

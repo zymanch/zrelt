@@ -3,6 +3,7 @@ namespace models\search;
 use models\Advert;
 use models\base\BaseAddressPeer;
 use models\base\BaseAdvertPeer;
+use models\base\BaseUserPeer;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -31,6 +32,8 @@ class SearchAdvert extends \models\base\BaseAdvert {
     const FILTER_PHONE = "phone";
     const FILTER_BALCONY = "balcony";
     const FILTER_TYPE = "type";
+    const FILTER_USER_ID = "user_id";
+    const FILTER_SELLER_ID = "seller_id";
 
 
     public $space_total_from;
@@ -50,6 +53,8 @@ class SearchAdvert extends \models\base\BaseAdvert {
     public $phone;
     public $balcony;
     public $type;
+    public $user_id;
+    public $seller_id;
 
     public function rules() {
         // NOTE: you should only define rules for those attributes that
@@ -65,6 +70,7 @@ class SearchAdvert extends \models\base\BaseAdvert {
             [[self::FILTER_COMPLEX], 'string','max' => 12],
             [[self::FILTER_BALCONY,self::FILTER_STEEL_DOOR, self::FILTER_PHONE], 'string','max' => 3],
             [[self::FILTER_TYPE], 'string','max' => 12],
+            [[self::FILTER_USER_ID,self::FILTER_SELLER_ID], 'integer'],
         ];
     }
 
@@ -87,6 +93,8 @@ class SearchAdvert extends \models\base\BaseAdvert {
                 ]
             ]
         ]);
+        $query->joinWith('seller', true);
+        $query->joinWith('address', true);
         $query->andFilterCompare(BaseAdvertPeer::TYPE,$this->type);
         if ($this->balcony) {
             $query->andWhere(['>',BaseAdvertPeer::BALCONY,0]);
@@ -101,7 +109,13 @@ class SearchAdvert extends \models\base\BaseAdvert {
             $complex = array_filter(explode(',',$this->complex));
             $query->andWhere(['in',BaseAddressPeer::COMPLEX,$complex]);
         }
+        if ($this->user_id) {
+            $query
+                ->joinWith('seller.user', false)
+                ->andWhere(['=','user.'.BaseUserPeer::ID, $this->user_id]);
+        }
         $query
+            ->andFilterCompare(BaseAdvertPeer::SELLER_ID, $this->seller_id)
             ->andFilterCompare(BaseAdvertPeer::FLOOR,$this->floor_from, '>=')
             ->andFilterCompare(BaseAdvertPeer::FLOOR,$this->floor_to, '<=')
 

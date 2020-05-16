@@ -8,7 +8,6 @@ namespace models\base;
  * This is the model class for table "user".
  *
  * @property integer $id
- * @property integer $seller_id
  * @property string $type
  * @property string $email
  * @property string $phone
@@ -18,7 +17,7 @@ namespace models\base;
  * @property string $status
  * @property string $changed
  *
- * @property \models\Seller $seller
+ * @property \models\Seller[] $sellers
  */
 class BaseUser extends \yii\db\ActiveRecord
 {
@@ -36,14 +35,13 @@ class BaseUser extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[BaseUserPeer::SELLER_ID, BaseUserPeer::PHONE], 'integer'],
             [[BaseUserPeer::TYPE, BaseUserPeer::STATUS], 'string'],
             [[BaseUserPeer::EMAIL, BaseUserPeer::PASSWORD, BaseUserPeer::AUTH_KEY], 'required'],
+            [[BaseUserPeer::PHONE], 'integer'],
             [[BaseUserPeer::CREATED, BaseUserPeer::CHANGED], 'safe'],
             [[BaseUserPeer::EMAIL, BaseUserPeer::PASSWORD], 'string', 'max' => 50],
             [[BaseUserPeer::AUTH_KEY], 'string', 'max' => 64],
             [[BaseUserPeer::EMAIL], 'unique'],
-            [[BaseUserPeer::SELLER_ID], 'exist', 'skipOnError' => true, 'targetClass' => BaseSeller::className(), 'targetAttribute' => [BaseUserPeer::SELLER_ID => BaseSellerPeer::ID]],
         ];
     }
 
@@ -54,7 +52,6 @@ class BaseUser extends \yii\db\ActiveRecord
     {
         return [
             BaseUserPeer::ID => 'ID',
-            BaseUserPeer::SELLER_ID => 'Seller ID',
             BaseUserPeer::TYPE => 'Type',
             BaseUserPeer::EMAIL => 'Email',
             BaseUserPeer::PHONE => 'Phone',
@@ -68,8 +65,8 @@ class BaseUser extends \yii\db\ActiveRecord
     /**
      * @return \models\SellerQuery
      */
-    public function getSeller() {
-        return $this->hasOne(\models\Seller::className(), [BaseSellerPeer::ID => BaseUserPeer::SELLER_ID]);
+    public function getSellers() {
+        return $this->hasMany(\models\Seller::className(), [BaseSellerPeer::USER_ID => BaseUserPeer::ID]);
     }
     
     /**

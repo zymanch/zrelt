@@ -19,6 +19,7 @@ abstract class Controller extends \yii\web\Controller {
     public $menu = [];
     public $sub_menu = [];
     public $custom_layout_file = false;
+    public $button = null;
 
     public $layout;
     private $_layoutInit = false;

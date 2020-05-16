@@ -37,7 +37,7 @@ if (!$this->title) {
     'logo' => Yii::$app->params['logo']??null,
     'sub_logo' => \Yii::$app->params['sub_logo']??null,
     'menu' => $context->menu,
-    'footer' => ['label'=>'button','url'=>'#']
+    'footer' => $context->button
 ]);?>
 asd
 <?php \module\design\menu\DefaultMenu::end();?>

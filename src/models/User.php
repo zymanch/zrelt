@@ -38,7 +38,7 @@ class User extends base\BaseUser implements \yii\web\IdentityInterface{
 
     public function checkPassword($password)
     {
-        return $this->password === $this->buildPasswordHash($password);
+        return $this->password === $this->_makePasswordHash($password);
     }
 
     public static function findIdentityByAccessToken($token, $type = null) {
